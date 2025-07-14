@@ -2,10 +2,11 @@ import { use } from "react";
 import AuthContext from "../../contexts/auth/AuthContext";
 import { NavLink } from "react-router";
 import { FaArrowRightFromBracket } from "react-icons/fa6";
-import Hambarger from "../hambarger/Hambarger";
+// import Hambarger from "../hambarger/Hambarger";
 import Logo from "../logo/Logo";
 import ThemeToggle from "../themeToggle/ThemeToggle";
 import NavProfile from "../navProfile/NavProfile";
+import NavHamburgerDrawer from "./NavHamburgerDrawer";
 
 const Navbar = () => {
   const { user, logoutUser } = use(AuthContext);
@@ -36,7 +37,8 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="navbar-start">
-        <Hambarger></Hambarger>
+        {/* <Hambarger></Hambarger> */}
+        <NavHamburgerDrawer></NavHamburgerDrawer>
       <Logo></Logo>
       </div>
       <div className="navbar-center hidden lg:flex">
