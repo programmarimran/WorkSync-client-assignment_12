@@ -33,7 +33,7 @@ const NavHamburgerDrawer = () => {
   }, [mobileMenuOpen]);
 
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
       <button
         onClick={() => setMobileMenuOpen(true)}
         className=" focus:outline-none"
