@@ -5,10 +5,12 @@ import ErrorPage from "../pages/error/ErrorPage";
 import AuthLayout from "../layouts/AuthLayout";
 import Login from "../pages/auth/email&password/Login";
 import Register from "../pages/auth/email&password/Register";
+import DashboardLayout from "../layouts/DashboardLayout";
+import PrivateRoute from "./PrivateRoute";
 const router = createBrowserRouter([
   {
     path: "/",
-    Component:HomeLayout,
+    Component: HomeLayout,
     children: [
       {
         index: true,
@@ -17,23 +19,36 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path:"/",
-    Component:AuthLayout,
-    children:[
+    path: "/",
+    Component: AuthLayout,
+    children: [
       {
-        path:"login",
-        Component:Login
+        path: "login",
+        Component: Login,
       },
       {
-        path:"register",
-        Component:Register
-      }
-    ]
-  }
-  ,
+        path: "register",
+        Component: Register,
+      },
+    ],
+  },
   {
-    path:"*",
-    Component:ErrorPage
-  }
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "dashboardhome",
+        element: <p>dashboard home page</p>,
+      },
+    ],
+  },
+  {
+    path: "*",
+    Component: ErrorPage,
+  },
 ]);
 export default router;

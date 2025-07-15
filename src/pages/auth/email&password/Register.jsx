@@ -90,10 +90,6 @@ const Register = () => {
 
         updateUserProfile(updateInfo)
           .then(() => {
-            setUser(result.user);
-            console.log(result);
-            // ✅ You can save extra role, bank_account_no, etc. in your own database here
-
             toast.success(
               `${
                 from
@@ -102,6 +98,8 @@ const Register = () => {
               }`
             );
             navigate(`${from || "/"}`);
+            setUser(result.user);
+            // save extra role, bank_account_no, etc. in your own database here
           })
           .catch((error) => {
             setError(error.code);

@@ -4,7 +4,7 @@ import { Link } from "react-router";
 const NavProfile = ({ user, logoutUser }) => {
   // const user=true
   const handleLogout = () => {
-    logoutUser()
+    logoutUser();
   };
 
   return (
@@ -54,12 +54,21 @@ const NavProfile = ({ user, logoutUser }) => {
           </div>
         </>
       ) : (
-        <>
-          <Link to={"/auth/login"}>
-            {" "}
-            <button className=" btn btn-outline">Login</button>
+        <div className=" flex items-center gap-2">
+        <div className=" hidden md:flex">
+            <Link to={"/register"}>
+            <button className=" btn border-secondary hover:bg-primary hover:text-white text-secondary btn-outline">
+              Register
+            </button>
           </Link>
-        </>
+        </div>
+          <Link to={"/login"}>
+            {" "}
+            <button className=" btn bg-primary text-white btn-outline">
+              Login
+            </button>
+          </Link>
+        </div>
       )}
     </div>
   );

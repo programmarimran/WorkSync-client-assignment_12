@@ -1,5 +1,4 @@
-import { use } from "react";
-import AuthContext from "../../contexts/auth/AuthContext";
+
 import { NavLink } from "react-router";
 import { FaArrowRightFromBracket } from "react-icons/fa6";
 // import Hambarger from "../hambarger/Hambarger";
@@ -7,9 +6,10 @@ import Logo from "../logo/Logo";
 import ThemeToggle from "../themeToggle/ThemeToggle";
 import NavProfile from "../navProfile/NavProfile";
 import NavHamburgerDrawer from "./NavHamburgerDrawer";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
-  const { user, logoutUser } = use(AuthContext);
+  const { user, logoutUser } =useAuth()
   console.log(user);
 
   const links = (

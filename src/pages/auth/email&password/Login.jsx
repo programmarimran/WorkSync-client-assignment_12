@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
@@ -6,14 +6,14 @@ import { IoMdEyeOff } from "react-icons/io";
 import Lottie from "lottie-react";
 import loginAnimation from "../../../assets/login-animation.json";
 import { toast } from "react-toastify";
-import AuthContext from "../../../contexts/auth/AuthContext";
 import GoogleLogin from "../socialLogin/GoogleLogin";
+import useAuth from "../../../hooks/useAuth";
 
 const Login = () => {
   const location = useLocation();
   const from = location?.state;
   const navigate = useNavigate();
-  const { signInUser, setUser, setLoading } = use(AuthContext);
+  const { loginUser, setUser, setLoading } = useAuth();
 
   const [show, setShow] = useState(false);
   const [error, setError] = useState("");
@@ -54,7 +54,7 @@ const Login = () => {
       setPasswordError("");
     }
 
-    signInUser(email, password)
+    loginUser(email, password)
       .then((result) => {
         setUser(result.user);
         toast.success(
@@ -94,12 +94,20 @@ const Login = () => {
           <h1 className="text-3xl text-center font-bold">Login now!</h1>
           <div className="md:flex flex-row-reverse">
             <div className="flex-1 flex flex-col justify-center items-center">
-              <Lottie style={{ width: "300px" }} animationData={loginAnimation} loop={true} />
+              <Lottie
+                style={{ width: "300px" }}
+                animationData={loginAnimation}
+                loop={true}
+              />
               <div className="text-center border border-[#2F80ED] rounded-2xl p-4 m-4 bg-[#2F80ED10]">
                 <h1 className="text-[#2F80ED]"> Don\'t have an account?</h1>
                 <h1>
                   <span className="text-[#2F80ED]">Please</span>
-                  <Link state={location?.state} to={"/register"} className="ml-2 text-2xl font-extrabold text-blue-500 underline">
+                  <Link
+                    state={location?.state}
+                    to={"/register"}
+                    className="ml-2 text-2xl font-extrabold text-blue-500 underline"
+                  >
                     Register
                   </Link>
                 </h1>
@@ -116,20 +124,38 @@ const Login = () => {
               </div>
               <fieldset className="fieldset">
                 <label className="label">Email</label>
-                <input {...register("email", { required: true })} type="email" className="input bg-[#2F80ED20] w-full" placeholder="Enter Your Email" />
+                <input
+                  {...register("email", { required: true })}
+                  type="email"
+                  className="input bg-[#2F80ED20] w-full"
+                  placeholder="Enter Your Email"
+                />
 
                 <label className="label">Password</label>
                 <div className="relative">
-                  <input {...register("password", { required: true })} type={show ? "text" : "password"} className="input w-full pr-16" placeholder="Password" />
+                  <input
+                    {...register("password", { required: true })}
+                    type={show ? "text" : "password"}
+                    className="input w-full pr-16"
+                    placeholder="Password"
+                  />
                   <button
                     onClick={() => setShow(!show)}
                     type="button"
                     className="absolute inset-y-0 right-0 flex items-center px-4 z-10"
                   >
-                    {show ? <MdOutlineRemoveRedEye size={24} /> : <IoMdEyeOff size={24} />}
+                    {show ? (
+                      <MdOutlineRemoveRedEye size={24} />
+                    ) : (
+                      <IoMdEyeOff size={24} />
+                    )}
                   </button>
                 </div>
-                {errors.password && <p className="text-error my-3 text-sm">Password is required</p>}
+                {errors.password && (
+                  <p className="text-error my-3 text-sm">
+                    Password is required
+                  </p>
+                )}
                 <p className="text-error my-3 text-sm">{passwordError}</p>
                 <button className="btn bg-[#2F80ED80] mt-4">Login</button>
               </fieldset>
