@@ -40,7 +40,7 @@ const NavHamburgerDrawer = () => {
       >
         {/* Hamburger Icon */}
         <svg
-          className="w-6 h-6 text-gray-700 dark:text-white"
+          className="w-10 h-10 text-gray-700 dark:text-white"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -57,7 +57,7 @@ const NavHamburgerDrawer = () => {
 
       {/* Drawer */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50">
+        <div className="fixed inset-0  backdrop-blur-sm z-50">
           <div
             ref={drawerRef}
             className="fixed top-0 left-0 right-0 bg-white dark:bg-gray-900 shadow-lg p-4 space-y-4 transform transition-transform duration-300 translate-y-0"
@@ -77,6 +77,13 @@ const NavHamburgerDrawer = () => {
               className="block px-4 py-2 rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
             >
               Home
+            </Link>
+            <Link
+              to="/about"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block px-4 py-2 rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              About
             </Link>
             <Link
               to="/contact-us"

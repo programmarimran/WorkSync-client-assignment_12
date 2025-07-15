@@ -7,11 +7,15 @@ import Footer from "../shared/footer/Footer";
 const HomeLayout = () => {
   return (
     <>
-      <Navbar></Navbar>
+      <div className="w-11/12 mx-auto">
+        <Navbar></Navbar>
+      </div>
       <main className=" w-11/12 mx-auto min-h-[calc(100vh-100px)]">
         <Outlet></Outlet>
       </main>
-      <Footer></Footer>
+      <div className="w-11/12 mx-auto">
+        <Footer></Footer>
+      </div>
     </>
   );
 };
