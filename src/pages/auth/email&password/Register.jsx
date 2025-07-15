@@ -8,8 +8,10 @@ import registerAnimation from "../../../assets/register-animation.json";
 import GoogleLogin from "../socialLogin/GoogleLogin";
 import useAuth from "../../../hooks/useAuth";
 import { toast } from "react-toastify";
+import useAxiosInstance from "../../../hooks/useAxiosInstance";
 
 const Register = () => {
+  const axiosinstance = useAxiosInstance();
   const [uploadedImage, setUploadedImage] = useState("");
   console.log(uploadedImage);
   const location = useLocation();
@@ -52,6 +54,7 @@ const Register = () => {
   };
 
   const handleCreateUser = (data) => {
+    console.log(data);
     data.password = data.password.replace(/\s+/g, "");
     const { email, password, name } = data;
 
@@ -99,7 +102,18 @@ const Register = () => {
             );
             navigate(`${from || "/"}`);
             setUser(result.user);
-            // save extra role, bank_account_no, etc. in your own database here
+            // data save mongodb
+            const { password, photo, ...userData } = data;
+            console.log(userData);
+            const userInfoDB = {
+              ...userData,
+              uid:result.user.uid,
+              created_at: new Date().toISOString(),
+              last_log_in: new Date().toISOString(),
+            };
+            axiosinstance.post(`/users`, userInfoDB).then((res) => {
+              console.log(res.data);
+            });
           })
           .catch((error) => {
             setError(error.code);
