@@ -103,6 +103,7 @@ const Register = () => {
             navigate(`${from || "/"}`);
             setUser(result.user);
             // data save mongodb
+            // eslint-disable-next-line no-unused-vars
             const { password, photo, ...userData } = data;
             console.log(userData);
             const userInfoDB = {
