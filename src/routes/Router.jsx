@@ -9,6 +9,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
 import Contact from "../pages/contact/Contact";
 import DashboardHome from "../pages/dashboard/dashboardHome/home/DashboardHome";
+import WorkSheetPage from "../pages/dashboard/employ/workSheetPage/WorkSheetPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -51,8 +52,8 @@ const router = createBrowserRouter([
         Component: DashboardHome,
       },
       {
-        path: "dashboardhome",
-        element: <p>dashboard home page</p>,
+        path: "work-sheet",
+        Component: WorkSheetPage,
       },
     ],
   },

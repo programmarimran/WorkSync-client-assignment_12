@@ -14,8 +14,8 @@ const useUserRole = () => {
       return res.data.role;
     },
   });
-
-  return { role: roleData, roleLoading };
+  const role = roleData || "employ";
+  return { role, roleLoading };
 };
 
 export default useUserRole;

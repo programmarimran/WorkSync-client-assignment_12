@@ -1,4 +1,3 @@
-
 import { NavLink } from "react-router";
 import { FaArrowRightFromBracket } from "react-icons/fa6";
 // import Hambarger from "../hambarger/Hambarger";
@@ -7,26 +6,60 @@ import ThemeToggle from "../themeToggle/ThemeToggle";
 import NavProfile from "../navProfile/NavProfile";
 import NavHamburgerDrawer from "./NavHamburgerDrawer";
 import useAuth from "../../hooks/useAuth";
+import { Home, LayoutDashboard, ListTodo, MessageCircle } from "lucide-react";
 
 const Navbar = () => {
-  const { user, logoutUser } =useAuth()
+  const { user, logoutUser } = useAuth();
   console.log(user);
 
   const links = (
     <>
       <li>
-        <NavLink to={"/"}>Home</NavLink>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive
+              ? "text-blue-600 flex items-center gap-1"
+              : "flex items-center gap-1"
+          }
+        >
+          <Home size={18} /> Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to={"/about"}>About</NavLink>
+        <NavLink
+          to="/dashboard"
+          className={({ isActive }) =>
+            isActive
+              ? "text-blue-600 flex items-center gap-1"
+              : "flex items-center gap-1"
+          }
+        >
+          <LayoutDashboard size={18} /> Dashboard
+        </NavLink>
       </li>
       <li>
-        <NavLink to={"/contact"}>Contact us</NavLink>
+        <NavLink
+          to="/contact-us"
+          className={({ isActive }) =>
+            isActive
+              ? "text-blue-600 flex items-center gap-1"
+              : "flex items-center gap-1"
+          }
+        >
+          <MessageCircle size={18} /> Contact Us
+        </NavLink>
       </li>
       <li>
-        <NavLink to={"/dashboard"}>
-          Dashboard
-          <FaArrowRightFromBracket />
+        <NavLink
+          to="/dashboard/work-sheet"
+          className={({ isActive }) =>
+            isActive
+              ? "text-blue-600 flex items-center gap-1"
+              : "flex items-center gap-1"
+          }
+        >
+          <ListTodo size={18} /> Work Sheet
         </NavLink>
       </li>
     </>
