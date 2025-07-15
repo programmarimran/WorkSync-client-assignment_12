@@ -1,21 +1,21 @@
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { IoMdEyeOff } from "react-icons/io";
 import Lottie from "lottie-react";
 import registerAnimation from "../../../assets/register-animation.json";
-import { toast } from "react-toastify";
-import AuthContext from "../../../contexts/auth/AuthContext";
 import GoogleLogin from "../socialLogin/GoogleLogin";
+import useAuth from "../../../hooks/useAuth";
+import { toast } from "react-toastify";
 
 const Register = () => {
+  const [uploadedImage, setUploadedImage] = useState("");
+  console.log(uploadedImage);
   const location = useLocation();
   const from = location?.state;
   const navigate = useNavigate();
-  const { createUser, updateUserProfile, setUser, setLoading } =
-    use(AuthContext);
-
+  const { createUser, updateUserProfile, setUser, setLoading } = useAuth();
   const [show, setShow] = useState(false);
   const [error, setError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -24,28 +24,36 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const handleImageUpload = (e) => {
+    const image = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", image);
+
+    fetch(
+      `https://api.imgbb.com/1/upload?key=${
+        import.meta.env.VITE_IMGBB_API_KEY
+      }`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    )
+      .then((res) => res.json())
+      .then((imgData) => {
+        if (imgData.success) {
+          setUploadedImage(imgData.data.url);
+          toast.success("Image uploaded!");
+        }
+      })
+      .catch(() => {
+        setError("Image upload failed");
+        setLoading(false);
+      });
+  };
 
   const handleCreateUser = (data) => {
     data.password = data.password.replace(/\s+/g, "");
-
-    const {
-      email,
-      password,
-      name,
-      photo,
-      role,
-      bank_account_no,
-      salary,
-      designation,
-    } = data;
-    const updateInfo = {
-      displayName: name,
-      photoURL: photo,
-      role: role,
-      bank_account_no: bank_account_no,
-      salary: salary,
-      designation: designation,
-    };
+    const { email, password, name } = data;
 
     const uppercaseRegex = /^(?=.*[A-Z])/;
     const lowercaseRegex = /^(?=.*[a-z])/;
@@ -71,21 +79,29 @@ const Register = () => {
     } else {
       setPasswordError("");
     }
-    console.log(data);
+
     createUser(email, password)
       .then((result) => {
+        console.log(result);
+        const updateInfo = {
+          displayName: name,
+          photoURL: uploadedImage,
+        };
+
         updateUserProfile(updateInfo)
           .then(() => {
             setUser(result.user);
+            console.log(result);
+            // ✅ You can save extra role, bank_account_no, etc. in your own database here
+
             toast.success(
               `${
                 from
-                  ? "SignUp in successfully! Redirecting to your previous page..."
+                  ? "SignUp successfully! Redirecting to your previous page..."
                   : "SignUp successfully! Redirecting to home page..."
               }`
             );
             navigate(`${from || "/"}`);
-            return;
           })
           .catch((error) => {
             setError(error.code);
@@ -128,7 +144,7 @@ const Register = () => {
                   <span className="text-[#2F80ED]">Please</span>
                   <Link
                     state={location?.state}
-                    to={"/auth/login"}
+                    to={"/login"}
                     className="ml-2 text-2xl font-extrabold text-blue-500 underline"
                   >
                     Login
@@ -165,9 +181,10 @@ const Register = () => {
                 <label className="label">Photo Upload (imgbb URL)</label>
                 <input
                   {...register("photo", { required: true })}
-                  type="url"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
                   className="input bg-[#2F80ED20] w-full"
-                  placeholder="Photo URL from imgbb"
                 />
 
                 <label className="label">Role (Required)</label>
