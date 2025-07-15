@@ -1,10 +1,15 @@
 import React from "react";
-import useUserRole from "../hooks/useUserRole";
+import { Outlet } from "react-router";
+import Navbar from "../shared/navbar/Navbar";
 
 const DashboardLayout = () => {
-  const { roleLoading,role } = useUserRole();
-  console.log("loading et type ki :",roleLoading,"role hoise:",role);
-  return <div>this is DashboardLayout</div>;
+  return (
+    <div>
+      <Navbar></Navbar>
+      <Outlet></Outlet>
+      
+    </div>
+  );
 };
 
 export default DashboardLayout;

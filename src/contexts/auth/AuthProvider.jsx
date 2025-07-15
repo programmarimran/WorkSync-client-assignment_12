@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import auth from "../../firebase/firebase.init";
 import { toast } from "react-toastify";
+
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   console.log(user);
@@ -18,9 +19,11 @@ const AuthProvider = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
   const updateUserProfile = (userInfo) => {
+    setLoading(true);
     return updateProfile(auth.currentUser, userInfo);
   };
   const loginUser = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
   const logoutUser = () => {
@@ -29,6 +32,7 @@ const AuthProvider = ({ children }) => {
     });
   };
   useEffect(() => {
+    setLoading(true);
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);

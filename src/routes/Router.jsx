@@ -7,6 +7,8 @@ import Login from "../pages/auth/email&password/Login";
 import Register from "../pages/auth/email&password/Register";
 import DashboardLayout from "../layouts/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
+import Contact from "../pages/contact/Contact";
+import DashboardHome from "../pages/dashboard/dashboardHome/home/DashboardHome";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -15,6 +17,10 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: "contact",
+        Component: Contact,
       },
     ],
   },
@@ -40,6 +46,10 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      {
+        index: true,
+        Component: DashboardHome,
+      },
       {
         path: "dashboardhome",
         element: <p>dashboard home page</p>,

@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,7 +7,25 @@
     <title>WorkSync</title>
   </head>
   <body>
+    <!-- Initial Loader -->
+    <div
+      id="initial-loader"
+      class="fixed inset-0 flex items-center justify-center bg-white dark:bg-gray-900 z-50"
+    >
+      <div
+        class="loader-spinner border-4 border-blue-600 border-t-transparent rounded-full w-16 h-16 animate-spin"
+      ></div>
+    </div>
+    <!-- React root -->
     <div id="root"></div>
+    <script>
+      window.addEventListener("load", function () {
+        const loader = document.getElementById("initial-loader");
+        if (loader) {
+          loader.style.display = "none";
+        }
+      });
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
