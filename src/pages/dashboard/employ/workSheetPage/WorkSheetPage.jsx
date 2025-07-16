@@ -5,6 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import useAuth from "../../../../hooks/useAuth";
+import LoadingPage from "../../../../components/Loadingpage";
 
 const WorkSheetPage = () => {
   const queryClient = useQueryClient();
@@ -16,7 +17,11 @@ const WorkSheetPage = () => {
   const [editSelectedDate, setEditSelectedDate] = useState(new Date());
 
   const { register, handleSubmit, reset } = useForm();
-  const { register: editRegister, handleSubmit: handleEditSubmit, reset: editReset } = useForm();
+  const {
+    register: editRegister,
+    handleSubmit: handleEditSubmit,
+    reset: editReset,
+  } = useForm();
 
   const { data: works = [], isLoading } = useQuery({
     queryKey: ["works", user.email],
@@ -37,7 +42,8 @@ const WorkSheetPage = () => {
   });
 
   const updateWorkMutation = useMutation({
-    mutationFn: ({ id, updatedWork }) => axiosSecure.patch(`/works/${id}`, updatedWork),
+    mutationFn: ({ id, updatedWork }) =>
+      axiosSecure.patch(`/works/${id}`, updatedWork),
     onSuccess: () => {
       queryClient.invalidateQueries(["works", user.email]);
       setEditModalIsOpen(false);
@@ -76,7 +82,7 @@ const WorkSheetPage = () => {
     updateWorkMutation.mutate({ id: currentEditWork._id, updatedWork });
   };
 
-  if (isLoading) return <p className="text-center py-8">Loading...</p>;
+  if (isLoading) return <LoadingPage></LoadingPage>;
 
   return (
     <div className=" bg-white dark:bg-gray-800 rounded-xl shadow">
@@ -92,8 +98,15 @@ const WorkSheetPage = () => {
         <tbody>
           <tr>
             <td colSpan="4">
-              <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-4 gap-2 items-center">
-                <select {...register("task")} required className="border p-2 rounded bg-transparent dark:bg-gray-600 dark:border-gray-600">
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="grid grid-cols-4 gap-2 items-center"
+              >
+                <select
+                  {...register("task")}
+                  required
+                  className="border p-2 rounded bg-transparent dark:bg-gray-600 dark:border-gray-600"
+                >
                   <option value="Sales">Sales</option>
                   <option value="Support">Support</option>
                   <option value="Content">Content</option>
@@ -110,7 +123,11 @@ const WorkSheetPage = () => {
                   onChange={(date) => setSelectedDate(date)}
                   className="border p-2 rounded w-full bg-transparent dark:border-gray-600"
                 />
-                <button type="submit" disabled={addWorkMutation.isLoading} className="btn btn-primary w-full">
+                <button
+                  type="submit"
+                  disabled={addWorkMutation.isLoading}
+                  className="btn btn-primary w-full"
+                >
                   {addWorkMutation.isLoading ? "Adding..." : "Add"}
                 </button>
               </form>
@@ -118,17 +135,26 @@ const WorkSheetPage = () => {
           </tr>
           {works.length === 0 && (
             <tr>
-              <td colSpan="4" className="text-center p-4">No work entries found.</td>
+              <td colSpan="4" className="text-center p-4">
+                No work entries found.
+              </td>
             </tr>
           )}
           {works.map((work) => (
             <tr key={work._id}>
               <td className="text-center">{work.task}</td>
               <td className="text-center">{work.hours}</td>
-              <td className="text-center">{new Date(work.date).toLocaleDateString()}</td>
+              <td className="text-center">
+                {new Date(work.date).toLocaleDateString()}
+              </td>
               <td className="text-center">
                 <div className="flex justify-center gap-2">
-                  <button className="btn dark:bg-gray-600 btn-xs" onClick={() => handleEdit(work)}>Edit</button>
+                  <button
+                    className="btn dark:bg-gray-600 btn-xs"
+                    onClick={() => handleEdit(work)}
+                  >
+                    Edit
+                  </button>
                   <button
                     className="btn btn-xs btn-error"
                     onClick={() => deleteWorkMutation.mutate(work._id)}
@@ -143,11 +169,24 @@ const WorkSheetPage = () => {
         </tbody>
       </table>
 
-      <input type="checkbox" id="edit-modal" className="modal-toggle" checked={editModalIsOpen} onChange={() => setEditModalIsOpen(!editModalIsOpen)} />
+      <input
+        type="checkbox"
+        id="edit-modal"
+        className="modal-toggle"
+        checked={editModalIsOpen}
+        onChange={() => setEditModalIsOpen(!editModalIsOpen)}
+      />
       <div className="modal">
         <div className="modal-box bg-white dark:bg-gray-900">
-          <form onSubmit={handleEditSubmit(onEditSubmit)} className="flex flex-col gap-4">
-            <select {...editRegister("task")} required className="select select-bordered bg-transparent dark:bg-gray-700">
+          <form
+            onSubmit={handleEditSubmit(onEditSubmit)}
+            className="flex flex-col gap-4"
+          >
+            <select
+              {...editRegister("task")}
+              required
+              className="select select-bordered bg-transparent dark:bg-gray-700"
+            >
               <option value="Sales">Sales</option>
               <option value="Support">Support</option>
               <option value="Content">Content</option>
@@ -165,16 +204,27 @@ const WorkSheetPage = () => {
               className="input input-bordered w-full bg-transparent dark:bg-gray-700"
             /> */}
             <DatePicker
-  selected={selectedDate}
-  onChange={(date) => setSelectedDate(date)}
-  className="border p-2 rounded w-full bg-transparent dark:border-gray-600"
-  popperPlacement="bottom-start"
-  popperClassName="datepicker-popper"
-/>
+              selected={selectedDate}
+              onChange={(date) => setSelectedDate(date)}
+              className="border p-2 rounded w-full bg-transparent dark:border-gray-600"
+              popperPlacement="bottom-start"
+              popperClassName="datepicker-popper"
+            />
 
             <div className="flex gap-2">
-              <button type="submit" className="btn btn-primary bg-primary flex-1">Update</button>
-              <button type="button" onClick={() => setEditModalIsOpen(false)} className="btn flex-1 dark:text-black">Cancel</button>
+              <button
+                type="submit"
+                className="btn btn-primary bg-primary flex-1"
+              >
+                Update
+              </button>
+              <button
+                type="button"
+                onClick={() => setEditModalIsOpen(false)}
+                className="btn flex-1 dark:text-black"
+              >
+                Cancel
+              </button>
             </div>
           </form>
         </div>

@@ -45,8 +45,11 @@ const DashboardHamburgerDrawer = () => {
   }, [mobileMenuOpen]);
 
   return (
-    <div className="lg:hidden z-50">
-      <button onClick={() => setMobileMenuOpen(true)} className="focus:outline-none">
+    <div className="">
+      <button
+        onClick={() => setMobileMenuOpen(true)}
+        className="focus:outline-none"
+      >
         <svg
           className="w-10 h-10 text-gray-700 dark:text-white"
           fill="none"
@@ -64,7 +67,7 @@ const DashboardHamburgerDrawer = () => {
       </button>
 
       {mobileMenuOpen && (
-        <div className="fixed inset-0 flex z-[999]">
+        <div className="fixed inset-0 flex ">
           {/* Left Drawer */}
           <div
             ref={drawerRef}
@@ -79,7 +82,12 @@ const DashboardHamburgerDrawer = () => {
             </button>
 
             <div className="pt-10">
-              <Logo />
+              <div className=" flex gap-1 items-center">
+                <Logo />
+                <h2 className=" md:hidden font-poppins -ml-2 text-3xl font-bold">
+                  Work<span className="text-primary text-4xl">S</span>ync
+                </h2>
+              </div>
               <div className="mb-4 text-center">
                 {user?.photoURL && (
                   <img
@@ -123,7 +131,10 @@ const DashboardHamburgerDrawer = () => {
             </div>
 
             <div className="p-4">
-              <button onClick={handleLogout} className="btn w-full btn-primary text-xl">
+              <button
+                onClick={handleLogout}
+                className="btn w-full btn-primary text-xl"
+              >
                 Logout
               </button>
             </div>
@@ -132,7 +143,7 @@ const DashboardHamburgerDrawer = () => {
           {/* Backdrop */}
           <div
             onClick={() => setMobileMenuOpen(false)}
-            className="flex-1 bg-black bg-opacity-50"
+            className="flex-1 backdrop-blur-xs"
           ></div>
         </div>
       )}

@@ -30,7 +30,7 @@ const DashboardLayout = () => {
       <div className="drawer-content flex flex-col bg-base-100 min-h-screen">
         {/* 🧭 Top Navbar */}
 
-        <div  className=" w-11/12 mx-auto sticky top-0">
+        <div  className=" w-11/12 lg:hidden z-50 mx-auto sticky top-0">
             <DashboardNavbar></DashboardNavbar>
           </div>
 
