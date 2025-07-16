@@ -19,8 +19,8 @@ const Navbar = () => {
           to="/"
           className={({ isActive }) =>
             isActive
-              ? "text-blue-600 flex items-center gap-1"
-              : "flex items-center gap-1"
+              ? "bg-primary text-white  flex items-center gap-1"
+              : "flex hover:bg-primary/10 items-center gap-1"
           }
         >
           <Home size={18} /> Home
@@ -31,8 +31,8 @@ const Navbar = () => {
           to="/dashboard"
           className={({ isActive }) =>
             isActive
-              ? "text-blue-600 flex items-center gap-1"
-              : "flex items-center gap-1"
+              ? "bg-primary text-white  flex items-center gap-1"
+              : "flex hover:bg-primary/10 items-center gap-1"
           }
         >
           <LayoutDashboard size={18} /> Dashboard
@@ -43,8 +43,8 @@ const Navbar = () => {
           to="/contact-us"
           className={({ isActive }) =>
             isActive
-              ? "text-blue-600 flex items-center gap-1"
-              : "flex items-center gap-1"
+              ? "bg-primary text-white  flex items-center gap-1"
+              : "flex hover:bg-primary/10  items-center gap-1"
           }
         >
           <MessageCircle size={18} /> Contact Us
@@ -55,8 +55,8 @@ const Navbar = () => {
           to="/dashboard/work-sheet"
           className={({ isActive }) =>
             isActive
-              ? "text-blue-600 flex items-center gap-1"
-              : "flex items-center gap-1"
+              ? "bg-primary text-white  flex items-center gap-1"
+              : "flex hover:bg-primary/10 items-center gap-1 "
           }
         >
           <ListTodo size={18} /> Work Sheet
@@ -76,7 +76,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{links}</ul>
+        <ul className="menu menu-horizontal gap-2">{links}</ul>
       </div>
       <div className="navbar-end gap-2">
         <ThemeToggle></ThemeToggle>
