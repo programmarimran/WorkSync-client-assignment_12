@@ -5,7 +5,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import useAuth from "../../../../hooks/useAuth";
-import Modal from "react-modal";
 
 const WorkSheetPage = () => {
   const queryClient = useQueryClient();
@@ -80,7 +79,7 @@ const WorkSheetPage = () => {
   if (isLoading) return <p className="text-center py-8">Loading...</p>;
 
   return (
-    <div className="overflow-x-auto bg-white dark:bg-gray-800 rounded-xl shadow">
+    <div className=" bg-white dark:bg-gray-800 rounded-xl shadow">
       <table className="table w-full">
         <thead>
           <tr>
@@ -93,11 +92,8 @@ const WorkSheetPage = () => {
         <tbody>
           <tr>
             <td colSpan="4">
-              <form
-                onSubmit={handleSubmit(onSubmit)}
-                className="grid grid-cols-4 gap-2 items-center"
-              >
-                <select {...register("task")} required className="border p-2 rounded bg-transparent dark:bg-gray-600  dark:border-gray-600">
+              <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-4 gap-2 items-center">
+                <select {...register("task")} required className="border p-2 rounded bg-transparent dark:bg-gray-600 dark:border-gray-600">
                   <option value="Sales">Sales</option>
                   <option value="Support">Support</option>
                   <option value="Content">Content</option>
@@ -114,11 +110,7 @@ const WorkSheetPage = () => {
                   onChange={(date) => setSelectedDate(date)}
                   className="border p-2 rounded w-full bg-transparent dark:border-gray-600"
                 />
-                <button
-                  type="submit"
-                  disabled={addWorkMutation.isLoading}
-                  className="btn btn-primary  w-full"
-                >
+                <button type="submit" disabled={addWorkMutation.isLoading} className="btn btn-primary w-full">
                   {addWorkMutation.isLoading ? "Adding..." : "Add"}
                 </button>
               </form>
@@ -150,34 +142,43 @@ const WorkSheetPage = () => {
           ))}
         </tbody>
       </table>
-      <Modal isOpen={editModalIsOpen} onRequestClose={() => setEditModalIsOpen(false)} ariaHideApp={false}>
-        <form
-          onSubmit={handleEditSubmit(onEditSubmit)}
-          className="flex flex-col gap-4 bg-white dark:bg-gray-900 p-6 rounded-xl max-w-md mx-auto shadow"
-        >
-          <select {...editRegister("task")} required className="border p-2 rounded bg-transparent dark:bg-gray-700 dark:border-gray-600">
-            <option value="Sales">Sales</option>
-            <option value="Support">Support</option>
-            <option value="Content">Content</option>
-            <option value="Paper-work">Paper-work</option>
-          </select>
-          <input
-            type="number"
-            {...editRegister("hours", { required: true, min: 0 })}
-            placeholder="Hours Worked"
-            className="border p-2 rounded bg-transparent dark:border-gray-600"
-          />
-          <DatePicker
-            selected={editSelectedDate}
-            onChange={(date) => setEditSelectedDate(date)}
-            className="border p-2 rounded w-full bg-transparent dark:border-gray-600"
-          />
-          <div className="flex gap-2">
-            <button type="submit" className="btn btn-primary flex-1">Update</button>
-            <button type="button" onClick={() => setEditModalIsOpen(false)} className="btn flex-1">Cancel</button>
-          </div>
-        </form>
-      </Modal>
+
+      <input type="checkbox" id="edit-modal" className="modal-toggle" checked={editModalIsOpen} onChange={() => setEditModalIsOpen(!editModalIsOpen)} />
+      <div className="modal">
+        <div className="modal-box bg-white dark:bg-gray-900">
+          <form onSubmit={handleEditSubmit(onEditSubmit)} className="flex flex-col gap-4">
+            <select {...editRegister("task")} required className="select select-bordered bg-transparent dark:bg-gray-700">
+              <option value="Sales">Sales</option>
+              <option value="Support">Support</option>
+              <option value="Content">Content</option>
+              <option value="Paper-work">Paper-work</option>
+            </select>
+            <input
+              type="number"
+              {...editRegister("hours", { required: true, min: 0 })}
+              placeholder="Hours Worked"
+              className="input input-bordered bg-transparent dark:bg-gray-700"
+            />
+            {/* <DatePicker
+              selected={editSelectedDate}
+              onChange={(date) => setEditSelectedDate(date)}
+              className="input input-bordered w-full bg-transparent dark:bg-gray-700"
+            /> */}
+            <DatePicker
+  selected={selectedDate}
+  onChange={(date) => setSelectedDate(date)}
+  className="border p-2 rounded w-full bg-transparent dark:border-gray-600"
+  popperPlacement="bottom-start"
+  popperClassName="datepicker-popper"
+/>
+
+            <div className="flex gap-2">
+              <button type="submit" className="btn btn-primary bg-primary flex-1">Update</button>
+              <button type="button" onClick={() => setEditModalIsOpen(false)} className="btn flex-1 dark:text-black">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };

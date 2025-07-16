@@ -4,7 +4,30 @@ import useUserRole from "../../../../hooks/useUserRole";
 const DashboardHome = () => {
   const { role } = useUserRole();
   console.log(role);
-  return <div>this is dashboard home</div>;
+  return(
+    <div>
+      <p>hi ifdff</p>
+      <p>hi ifdff</p>
+      <p>hi ifdff</p>
+      <p>hi ifdff</p>
+      <p>hi ifdff</p>
+      <p>hi ifdff</p>
+      <p>hi ifdff</p>
+      <p>hi ifdff</p>
+      <p>hi ifdff</p>
+      <p>hi ifdff</p>
+      <p>hi ifdff</p>
+      <p>hi ifdff</p>
+      <p>hi ifdff</p>
+      <p>hi ifdff</p>
+      <p>hi ifdff</p>
+      <p>hi ifdff</p>
+      <p>hi ifdff</p>
+      <p>hi ifdff</p>
+      <p>hi ifdff</p>
+      <p>hi ifdff</p>
+    </div>
+  );
 };
 
 export default DashboardHome;

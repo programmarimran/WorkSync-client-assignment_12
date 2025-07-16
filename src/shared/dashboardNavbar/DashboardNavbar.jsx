@@ -54,23 +54,24 @@ const DashboardNavbar = () => {
   );
 
   return (
-    <div className="navbar border p-0 justify-between">
+    <div className="navbar  p-0 justify-between">
       {/* Navbar Start */}
-      <div className=" border">dfd
+      <div className=" ">
         <div className=" lg:hidden">
           <DashboardHambarger></DashboardHambarger>
         </div>
       </div>
 
       {/* Navbar Center */}
-      <div className="navbar-center hidden lg:flex border">
-        <ul className="menu gap-4 menu-horizontal px-1">{links}</ul>
-      </div>
+    
 
       {/* Navbar Middle for md only */}
 
       {/* Navbar End */}
       <div className="navbar-end gap-2 md:gap-3">
+          <div className="navbar-center hidden lg:flex ">
+        <ul className="menu gap-4 menu-horizontal px-1">{links}</ul>
+      </div>
         <ThemeToggle />
 
         <button onClick={handleLogout} className=" btn btn-primary">

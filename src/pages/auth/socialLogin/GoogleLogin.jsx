@@ -1,20 +1,20 @@
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
-import AuthContext from "../../../contexts/auth/AuthContext";
+import useAuth from "../../../hooks/useAuth";
 
 const GoogleLogin = ({ from }) => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { loginUserWithGoogle, setLoading,setUser } = use(AuthContext);
+  const { loginWithGoogle, setLoading, setUser } = useAuth();
   // console.log(user);
   const handleGoogleLogin = () => {
-    loginUserWithGoogle()
+    loginWithGoogle()
       .then((result) => {
         // console.log(result.user);
         if (result) {
-          setUser(result.user)
+          setUser(result.user);
           toast.success(
             `${
               from

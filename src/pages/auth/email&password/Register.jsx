@@ -3,8 +3,8 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { IoMdEyeOff } from "react-icons/io";
-import Lottie from "lottie-react";
-import registerAnimation from "../../../assets/register-animation.json";
+// import Lottie from "lottie-react";
+// import registerAnimation from "../../../assets/register-animation.json";
 import GoogleLogin from "../socialLogin/GoogleLogin";
 import useAuth from "../../../hooks/useAuth";
 import { toast } from "react-toastify";
@@ -103,8 +103,10 @@ const Register = () => {
             navigate(`${from || "/"}`);
             setUser(result.user);
             // data save mongodb
+           
             // eslint-disable-next-line no-unused-vars
             const { password, photo, ...userData } = data;
+
             console.log(userData);
             const userInfoDB = {
               ...userData,
@@ -138,7 +140,11 @@ const Register = () => {
         setLoading(false);
       });
   };
-
+  //  <Lottie
+  //               style={{ width: "300px" }}
+  //               animationData={registerAnimation}
+  //               loop={true}
+  //             />
   return (
     <div className="py-12">
       <div className="card mx-auto bg-base-100 border border-gray-200 w-full shrink-0 shadow-2xl">
@@ -146,11 +152,9 @@ const Register = () => {
           <h1 className="text-3xl text-center font-bold">SignUp now!</h1>
           <div className="md:flex flex-row-reverse">
             <div className="flex-1 flex flex-col justify-center items-center">
-              <Lottie
-                style={{ width: "300px" }}
-                animationData={registerAnimation}
-                loop={true}
-              />
+           
+
+
               <div className="text-center border border-[#2F80ED] rounded-2xl p-4 m-4 bg-[#2F80ED10]">
                 <h1 className="text-[#2F80ED]"> Already have an account?</h1>
                 <h1>

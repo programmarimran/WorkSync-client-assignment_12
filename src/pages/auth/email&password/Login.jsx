@@ -3,8 +3,8 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { IoMdEyeOff } from "react-icons/io";
-import Lottie from "lottie-react";
-import loginAnimation from "../../../assets/login-animation.json";
+// import Lottie from "lottie-react";
+// import loginAnimation from "../../../assets/login-animation.json";
 import { toast } from "react-toastify";
 import GoogleLogin from "../socialLogin/GoogleLogin";
 import useAuth from "../../../hooks/useAuth";
@@ -86,7 +86,11 @@ const Login = () => {
         setLoading(false);
       });
   };
-
+  // <Lottie
+  //               style={{ width: "300px" }}
+  //               animationData={loginAnimation}
+  //               loop={true}
+  //             />
   return (
     <div className="py-12">
       <div className="card mx-auto bg-base-100 border border-gray-200 w-full shrink-0 shadow-2xl">
@@ -94,11 +98,10 @@ const Login = () => {
           <h1 className="text-3xl text-center font-bold">Login now!</h1>
           <div className="md:flex flex-row-reverse">
             <div className="flex-1 flex flex-col justify-center items-center">
-              <Lottie
-                style={{ width: "300px" }}
-                animationData={loginAnimation}
-                loop={true}
-              />
+            
+
+
+
               <div className="text-center border border-[#2F80ED] rounded-2xl p-4 m-4 bg-[#2F80ED10]">
                 <h1 className="text-[#2F80ED]"> Don\'t have an account?</h1>
                 <h1>
