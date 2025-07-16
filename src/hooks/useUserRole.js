@@ -14,7 +14,7 @@ const useUserRole = () => {
       return res.data.role;
     },
   });
-  const role = roleData || "employ";
+  const role = roleData;
   return { role, roleLoading };
 };
 

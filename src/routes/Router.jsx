@@ -10,6 +10,7 @@ import PrivateRoute from "./PrivateRoute";
 import Contact from "../pages/contact/Contact";
 import DashboardHome from "../pages/dashboard/dashboardHome/home/DashboardHome";
 import WorkSheetPage from "../pages/dashboard/employ/workSheetPage/WorkSheetPage";
+import UpdateProfile from "../pages/auth/updateProfile/UpdateProfile";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "register",
         Component: Register,
+      },
+      {
+        path: "update-profile",
+        Component: UpdateProfile,
       },
     ],
   },

@@ -1,37 +1,68 @@
 import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import useAuth from "../../../hooks/useAuth";
-
-const GoogleLogin = ({ from }) => {
+import useAxiosInstance from "../../../hooks/useAxiosInstance";
+import Swal from "sweetalert2";
+const GoogleLogin = () => {
+  // const location = useLocation();
+  // const from = location.pathname;
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const axiosinstance = useAxiosInstance();
   const { loginWithGoogle, setLoading, setUser } = useAuth();
-  // console.log(user);
-  const handleGoogleLogin = () => {
-    loginWithGoogle()
-      .then((result) => {
-        // console.log(result.user);
-        if (result) {
-          setUser(result.user);
-          toast.success(
-            `${
-              from
-                ? "Logged in with Google successfully! Redirecting to your previous page..."
-                : "Logged in with Google successfully! Redirecting to home page..."
-            }`
-          );
-          navigate(`${from || "/"}`);
-          return;
+
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await loginWithGoogle();
+      if (result) {
+        setUser(result.user);
+
+        const userInfoDB = {
+          name: result?.user.displayName,
+          email: result?.user.email,
+          created_at: new Date().toISOString(),
+          last_log_in: new Date().toISOString(),
+          uid: result?.user.uid,
+        };
+
+        try {
+          await axiosinstance.post(`/users`, userInfoDB);
+        } catch (err) {
+          if (err.response?.status === 409) {
+            console.log("User already exists.");
+          } else {
+            console.error(err);
+          }
         }
-      })
-      .catch((error) => {
-        setError(error.code);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+
+        const patchInfoDB = {
+          email: result?.user.email,
+          last_log_in: new Date().toISOString(),
+        };
+
+        await axiosinstance.patch(`/users/profile`, patchInfoDB);
+
+        const roleRes = await axiosinstance.get(
+          `/users/user-role/${result?.user.email}`
+        );
+        console.log("Role check:", roleRes.data.role);
+
+        if (!roleRes.data.role) {
+          // New user: role nai
+          Swal.fire("Please update your profile information");
+          navigate("/update-profile");
+        } else {
+          // Role ase: direct home e pathai
+          navigate("/");
+        }
+      }
+    } catch (error) {
+      setError(error.code);
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

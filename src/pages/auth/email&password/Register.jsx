@@ -100,23 +100,24 @@ const Register = () => {
                   : "SignUp successfully! Redirecting to home page..."
               }`
             );
-            navigate(`${from || "/"}`);
-            setUser(result.user);
+
             // data save mongodb
-           
+
             // eslint-disable-next-line no-unused-vars
             const { password, photo, ...userData } = data;
 
             console.log(userData);
             const userInfoDB = {
               ...userData,
-              uid:result.user.uid,
+              uid: result.user.uid,
               created_at: new Date().toISOString(),
               last_log_in: new Date().toISOString(),
             };
             axiosinstance.post(`/users`, userInfoDB).then((res) => {
               console.log(res.data);
             });
+            navigate(`${from || "/"}`);
+            setUser(result.user);
           })
           .catch((error) => {
             setError(error.code);
@@ -152,9 +153,6 @@ const Register = () => {
           <h1 className="text-3xl text-center font-bold">SignUp now!</h1>
           <div className="md:flex flex-row-reverse">
             <div className="flex-1 flex flex-col justify-center items-center">
-           
-
-
               <div className="text-center border border-[#2F80ED] rounded-2xl p-4 m-4 bg-[#2F80ED10]">
                 <h1 className="text-[#2F80ED]"> Already have an account?</h1>
                 <h1>

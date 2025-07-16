@@ -30,12 +30,14 @@ const DashboardLayout = () => {
       <div className="drawer-content flex flex-col bg-base-100 min-h-screen">
         {/* 🧭 Top Navbar */}
 
-        <div  className=" w-11/12 lg:hidden z-50 mx-auto sticky top-0">
+        <div className=" bg-base-100  lg:hidden z-50  sticky top-0">
+          <div className=" w-11/12 mx-auto">
             <DashboardNavbar></DashboardNavbar>
           </div>
+        </div>
 
         {/* Nested Page Content */}
-        <div className="p-4 flex-1">
+        <div className="p-4 flex-1 w-11/12 mx-auto">
           <Outlet />
         </div>
       </div>
@@ -45,7 +47,7 @@ const DashboardLayout = () => {
         <div className="flex flex-col justify-between h-full w-72">
           {/* Top Part */}
           <div>
-            <div className="sticky top-0 z-50 bg-base-100">
+            <div className="sticky top-0  bg-base-100">
               <Logo />
               {/* User Info */}
               <div className="mb-4 text-center">
@@ -67,6 +69,16 @@ const DashboardLayout = () => {
 
             {/* Nav Links */}
             <ul className="menu p-4 space-y-2">
+              <li>
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive ? "active font-bold" : ""
+                  }
+                >
+                  Home 
+                </NavLink>
+              </li>
               <li>
                 <NavLink
                   to="/dashboard"

@@ -32,7 +32,7 @@ const DashboardNavProfile = () => {
                     {user ? user.displayName : ""}
                   </div> */}
             </div>
-            <div className="avatar">
+            <div className="avatar z-0">
               <div className="ring-[#2F80ED] ring-offset-base-100 w-10 rounded-full ring-2 ring-offset-2">
                 <img src={user?.photoURL} alt="User" />
               </div>
@@ -41,7 +41,7 @@ const DashboardNavProfile = () => {
         </div>
 
         <ul
-          tabIndex={0}
+         
           className="menu border dropdown-content bg-base-300 rounded-2xl px-4 py-2"
         >
           <li className=" w-full">

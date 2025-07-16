@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import axios from "axios";
 import useAuth from "./useAuth";
-import { useNavigate } from "react-router"; 
+import { useNavigate } from "react-router";
 
 const axiosSecure = axios.create({
-  baseURL: "https://work-sync-server-pi.vercel.app",
+  baseURL: import.meta.env.VITE_Server_URL,
 });
 
 const useAxiosSecure = () => {

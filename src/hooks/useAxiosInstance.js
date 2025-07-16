@@ -1,6 +1,6 @@
 import axios from "axios";
 const axiosinstance = axios.create({
-  baseURL: `https://work-sync-server-pi.vercel.app`,
+  baseURL: import.meta.env.VITE_Server_URL,
 });
 const useAxiosInstance = () => {
   return axiosinstance;

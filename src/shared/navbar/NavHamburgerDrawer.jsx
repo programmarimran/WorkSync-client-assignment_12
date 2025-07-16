@@ -1,23 +1,9 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router";
-
-const user = {
-  email: "hr@example.com",
-  role: "hr", 
-};
-
+import { NavLink } from "react-router";
 const NavHamburgerDrawer = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const drawerRef = useRef();
 
-  const dashboardLink =
-    user?.role === "admin"
-      ? "/dashboard/all-employee-list"
-      : user?.role === "hr"
-      ? "/dashboard/employee-list"
-      : "/dashboard/work-sheet";
-
-  // বাইরে ক্লিক করলে Drawer বন্ধ হবে
   useEffect(() => {
     function handleClickOutside(event) {
       if (drawerRef.current && !drawerRef.current.contains(event.target)) {
@@ -70,37 +56,36 @@ const NavHamburgerDrawer = () => {
               ✕
             </button>
 
-            {/* Nav Links */}
-            <Link
+            {/* Nav NavLinks */}
+            <NavLink
               to="/"
               onClick={() => setMobileMenuOpen(false)}
               className="block px-4 py-2 rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
             >
               Home
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/about"
               onClick={() => setMobileMenuOpen(false)}
               className="block px-4 py-2 rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
             >
               About
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/contact-us"
               onClick={() => setMobileMenuOpen(false)}
               className="block px-4 py-2 rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
             >
               Contact Us
-            </Link>
-            {user && (
-              <Link
-                to={dashboardLink}
+            </NavLink>
+              <NavLink
+                to={"/dashboard"}
                 onClick={() => setMobileMenuOpen(false)}
                 className="block px-4 py-2 rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
               >
                 Dashboard
-              </Link>
-            )}
+              </NavLink>
+           
           </div>
         </div>
       )}
