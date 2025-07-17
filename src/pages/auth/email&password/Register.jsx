@@ -112,6 +112,7 @@ const Register = () => {
               uid: result.user.uid,
               created_at: new Date().toISOString(),
               last_log_in: new Date().toISOString(),
+              photo:uploadedImage
             };
             axiosinstance.post(`/users`, userInfoDB).then((res) => {
               console.log(res.data);

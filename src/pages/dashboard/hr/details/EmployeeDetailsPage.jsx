@@ -1,0 +1,74 @@
+import { useParams } from "react-router";
+import { useQuery } from "@tanstack/react-query";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+
+const EmployeeDetailsPage = () => {
+  const axiosSecure = useAxiosSecure();
+  const { slug } = useParams();
+  const { data, isLoading } = useQuery({
+    queryKey: ["employee-details", slug],
+    queryFn: async () => (await axiosSecure.get(`/hr/employees/${slug}`)).data,
+  });
+
+  if (isLoading) return <p>Loading employee details...</p>;
+
+  const { employee, payments } = data;
+const monthNames = [
+  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+];
+
+const chartData = payments.map((item) => {
+  const monthName = monthNames[item.month - 1]; 
+  return {
+    month: `${monthName}/${item.year}`,
+    salary: item.amount || employee.salary,
+  };
+});
+
+  return (
+    <div className="max-w-4xl mx-auto p-4">
+      <div className="flex gap-4 items-center mb-4">
+        <img
+          src={employee.image}
+          alt={employee.name}
+          className="w-20 h-20 rounded-full object-cover"
+        />
+        <div>
+          <h2 className="text-2xl font-bold">{employee.name}</h2>
+          <p className="text-sm text-gray-600">
+            {employee.designation || "Employee"}
+          </p>
+        </div>
+      </div>
+      <h3 className="text-lg font-bold mb-2">Salary History</h3>
+      <ResponsiveContainer width="100%" height={300}>
+        <BarChart data={chartData}>
+          <XAxis
+            dataKey="month"
+            label={{
+              value: "Month/Year",
+              position: "insideBottom",
+              offset: -5,
+            }}
+          />
+          <YAxis
+            label={{ value: "Salary", angle: -90, position: "insideLeft" }}
+          />
+          <Tooltip />
+          <Bar dataKey="salary" fill="#8884d8" />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+  );
+};
+
+export default EmployeeDetailsPage;

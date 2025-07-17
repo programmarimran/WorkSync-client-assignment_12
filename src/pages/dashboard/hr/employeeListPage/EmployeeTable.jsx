@@ -3,7 +3,7 @@ import { useReactTable, getCoreRowModel, flexRender } from "@tanstack/react-tabl
 import { useMemo } from "react";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
-const EmployeeTable = ({ handlePayClick }) => {
+const EmployeeTable = ({ handlePayClick,handleDetailsClick  }) => {
   const queryClient = useQueryClient();
   const axiosSecure = useAxiosSecure();
 
@@ -50,6 +50,17 @@ const EmployeeTable = ({ handlePayClick }) => {
             className="btn btn-xs btn-primary"
           >
             Pay
+          </button>
+        ),
+      },
+       {
+        header: "Details",
+        cell: ({ row }) => (
+          <button
+            onClick={() => handleDetailsClick(row.original)}
+            className="btn btn-xs btn-secondary"
+          >
+            Details
           </button>
         ),
       },

@@ -1,35 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import { toast } from "react-toastify";
 import useAxiosInstance from "../../../hooks/useAxiosInstance";
-import useUserRole from "../../../hooks/useUserRole";
-import LoadingPage from "../../../components/Loadingpage";
+import Swal from "sweetalert2";
 
-const UpdateProfile = () => {
+const DashboardProfileUpdate = () => {
   const axiosinstance = useAxiosInstance();
-  const { role, roleLoading } = useUserRole();
+
   const [uploadedImage, setUploadedImage] = useState("");
-  const { user,loading, updateUserProfile, setLoading } = useAuth();
+  const { user, updateUserProfile, setLoading } = useAuth();
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location?.state;
 
   const {
     register,
     handleSubmit,
+    // eslint-disable-next-line no-unused-vars
     formState: { errors },
   } = useForm();
 
-  useEffect(() => {
-    if (role && !roleLoading) {
-      navigate(from || "/");
-    }
-  }, [role, roleLoading, from, navigate]);
-
-  if (roleLoading||loading) return <LoadingPage />;
   const handleImageUpload = (e) => {
     const image = e.target.files[0];
     const formData = new FormData();
@@ -57,39 +48,36 @@ const UpdateProfile = () => {
       });
   };
 
-  const handleUpdateUser = (data) => {
-    const updateInfo = {
-      displayName: data.name,
-      photoURL: uploadedImage,
+const handleProfileUpdate = async (data) => {
+  const updateInfo = {
+    displayName: data.name,
+    ...(uploadedImage && { photoURL: uploadedImage }),
+  };
+
+  try {
+    await updateUserProfile(updateInfo);
+    Swal.fire("Profile Update successfully! Redirecting to your previous page...");
+    navigate(-1);
+setLoading(false)
+    const userInfoDB = {
+      name: data.name,
+      ...(uploadedImage ? { photo: uploadedImage } : { photo: user?.photoURL }),
+      uid: user?.uid,
     };
 
-    updateUserProfile(updateInfo)
-      .then(() => {
-        toast.success(
-          from
-            ? "SignUp successfully! Redirecting to your previous page..."
-            : "SignUp successfully! Redirecting to home page..."
-        );
-        navigate(`${from || "/"}`);
-        // eslint-disable-next-line no-unused-vars
-        const { photo, ...userData } = data;
+    const res = await axiosinstance.patch("/users/profile", userInfoDB);
+    console.log(res.data);
 
-        const userInfoDB = {
-          ...userData,
-          uid: user?.uid,
-          last_log_in: new Date().toISOString(),
-          photo:uploadedImage
-        };
-        const res = axiosinstance.put("/users/profile", userInfoDB);
-        console.log(res.data)
-      })
-      .catch((error) => setError(error.code));
-  };
+  } catch (error) {
+    setError(error.code);
+  }
+};
+
 
   return (
     <div className="py-12">
       <div className="card mx-auto bg-base-100 border border-gray-200 w-full shadow-2xl">
-        <form onSubmit={handleSubmit(handleUpdateUser)} className="card-body">
+        <form onSubmit={handleSubmit(handleProfileUpdate)} className="card-body">
           <h1 className="text-3xl text-center font-bold mb-4">
             Update Your Profile
           </h1>
@@ -119,27 +107,12 @@ const UpdateProfile = () => {
             <div>
               <label className="label">Photo Upload</label>
               <input
-                {...register("photo", { required: true })}
+                {...register("photo")}
                 type="file"
                 accept="image/*"
                 onChange={handleImageUpload}
                 className="input bg-[#2F80ED20] w-full"
               />
-            </div>
-
-            <div>
-              <label className="label">Role</label>
-              <select
-                {...register("role", { required: true })}
-                className="input bg-[#2F80ED20] w-full"
-              >
-                <option value="">Select Role</option>
-                <option value="Employee">Employee</option>
-                <option value="HR">HR</option>
-              </select>
-              {errors.role && (
-                <p className="text-error mt-1 text-sm">Role is required</p>
-              )}
             </div>
 
             <div>
@@ -186,4 +159,4 @@ const UpdateProfile = () => {
   );
 };
 
-export default UpdateProfile;
+export default DashboardProfileUpdate;

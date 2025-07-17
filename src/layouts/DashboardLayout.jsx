@@ -1,5 +1,6 @@
-import { Outlet, NavLink } from "react-router";
+import { Outlet, NavLink, Link } from "react-router";
 import useAuth from "../hooks/useAuth";
+import { FaEdit } from "react-icons/fa";
 import Logo from "../shared/logo/Logo";
 import ThemeToggle from "../shared/themeToggle/ThemeToggle";
 import Swal from "sweetalert2";
@@ -58,9 +59,15 @@ const DashboardLayout = () => {
                     className="w-16 h-16 mx-auto rounded-full border-2 border-primary"
                   />
                 )}
-                <h2 className="text-lg font-semibold mt-2">
-                  {user?.displayName || "User Name"}
-                </h2>
+
+                <div className=" flex items-center justify-center">
+                  <h2 className="text-lg mx-5 font-semibold mt-2">
+                    {user?.displayName || "User Name"}
+                  </h2>
+                  <Link to={"/dashboard/profile-update"}>
+                  <FaEdit className=" text-primary" size={25} />
+                  </Link>
+                </div>
                 <p className="text-sm text-gray-500">{user?.email}</p>
                 <ThemeToggle />
               </div>
