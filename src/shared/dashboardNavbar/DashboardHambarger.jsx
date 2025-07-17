@@ -108,7 +108,8 @@ const DashboardHamburgerDrawer = () => {
             <ul className="menu p-4 z-0 space-y-2">
               <li>
                 <NavLink
-                  to="/"
+                  to="/" 
+                  onClick={() => setMobileMenuOpen(false)}
                   className={({ isActive }) =>
                     isActive ? "active font-bold" : ""
                   }
@@ -118,7 +119,8 @@ const DashboardHamburgerDrawer = () => {
               </li>
               <li>
                 <NavLink
-                  to="/dashboard"
+                  to="/dashboard" 
+                  onClick={() => setMobileMenuOpen(false)}
                   className={({ isActive }) =>
                     isActive ? "active font-bold" : ""
                   }
@@ -127,8 +129,9 @@ const DashboardHamburgerDrawer = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink
-                  to="/dashboard/work-sheet"
+                <NavLink 
+                  to="/dashboard/work-sheet" 
+                  onClick={() => setMobileMenuOpen(false)}
                   className={({ isActive }) =>
                     isActive ? "active font-bold" : ""
                   }
@@ -138,7 +141,8 @@ const DashboardHamburgerDrawer = () => {
               </li>
               <li>
                 <NavLink
-                  to="/dashboard/payment-history"
+                  to="/dashboard/payment-history" 
+                  onClick={() => setMobileMenuOpen(false)}
                   className={({ isActive }) =>
                     isActive ? "active font-bold" : ""
                   }
@@ -148,7 +152,8 @@ const DashboardHamburgerDrawer = () => {
               </li>
               <li>
                 <NavLink
-                  to="/dashboard/employee-list"
+                  to="/dashboard/employee-list" 
+                  onClick={() => setMobileMenuOpen(false)}
                   className={({ isActive }) =>
                     isActive ? "active font-bold" : ""
                   }
