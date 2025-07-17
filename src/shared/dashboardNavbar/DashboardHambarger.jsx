@@ -83,34 +83,37 @@ const DashboardHamburgerDrawer = () => {
             </button>
 
             <div className="pt-10 ">
-             <div className=" backdrop-blur-2xl sticky top-0 z-50">
-               <div className=" flex gap-1 items-center">
-                <Logo />
-                <h2 className=" md:hidden font-poppins -ml-2 text-3xl font-bold">
-                  Work<span className="text-primary text-4xl">S</span>ync
-                </h2>
-              </div>
-              <div className="mb-4 text-center">
-                {user?.photoURL && (
-                  <img
-                    src={user.photoURL}
-                    alt="User"
-                    className="w-16 h-16 mx-auto rounded-full border-2 border-primary"
-                  />
-                )}
-                <div className=" flex items-center justify-center">
-                  <h2 className="text-lg mx-5 font-semibold mt-2">
-                    {user?.displayName || "User Name"}
+              <div className=" backdrop-blur-2xl sticky top-0 z-50">
+                <div className=" flex gap-1 items-center">
+                  <Logo />
+                  <h2 className=" md:hidden font-poppins -ml-2 text-3xl font-bold">
+                    Work<span className="text-primary text-4xl">S</span>ync
                   </h2>
-                  <Link to={"/dashboard/profile-update"}>
-                    <FaEdit className=" text-primary" size={25} />
-                  </Link>
                 </div>
-                <p className="text-sm text-gray-500">{user?.email}</p>
-                <ThemeToggle />
+                <div className="mb-4 text-center">
+                  {user?.photoURL && (
+                    <img
+                      src={user.photoURL}
+                      alt="User"
+                      className="w-16 h-16 mx-auto rounded-full border-2 border-primary"
+                    />
+                  )}
+                  <div className=" flex items-center justify-center">
+                    <h2 className="text-lg mx-5 font-semibold mt-2">
+                      {user?.displayName || "User Name"}
+                    </h2>
+                    <Link
+                      onClick={() => setMobileMenuOpen(false)}
+                      to={"/dashboard/profile-update"}
+                    >
+                      <FaEdit className=" text-primary" size={25} />
+                    </Link>
+                  </div>
+                  <p className="text-sm text-gray-500">{user?.email}</p>
+                  <ThemeToggle />
+                </div>
+                <div className="divider"></div>
               </div>
-              <div className="divider"></div>
-             </div>
 
               {/* Nav Links */}
               <ul className="menu p-4 z-10 space-y-2">
