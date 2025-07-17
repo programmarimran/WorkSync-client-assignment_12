@@ -10,7 +10,7 @@ import { Home, LayoutDashboard, ListTodo, MessageCircle } from "lucide-react";
 
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
-  console.log(user);
+  // console.log(user);
 
   const links = (
     <>

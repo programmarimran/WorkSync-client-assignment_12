@@ -8,7 +8,7 @@ const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
   const location = useLocation();
   const from = location.pathname;
-console.log(loading)
+// console.log(loading)
   if (loading) {
     return <LoadingPage/>;
   }

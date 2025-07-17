@@ -30,7 +30,7 @@ const GoogleLogin = () => {
           await axiosinstance.post(`/users`, userInfoDB);
         } catch (err) {
           if (err.response?.status === 409) {
-            console.log("User already exists.");
+            // console.log("User already exists.");
           } else {
             console.error(err);
           }
@@ -46,7 +46,7 @@ const GoogleLogin = () => {
         const roleRes = await axiosinstance.get(
           `/users/user-role/${result?.user.email}`
         );
-        console.log("Role check:", roleRes.data.role);
+        // console.log("Role check:", roleRes.data.role);
 
         if (!roleRes.data.role) {
           // New user: role nai

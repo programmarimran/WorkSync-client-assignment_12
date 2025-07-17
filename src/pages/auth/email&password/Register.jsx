@@ -13,7 +13,7 @@ import useAxiosInstance from "../../../hooks/useAxiosInstance";
 const Register = () => {
   const axiosinstance = useAxiosInstance();
   const [uploadedImage, setUploadedImage] = useState("");
-  console.log(uploadedImage);
+  // console.log(uploadedImage);
   const location = useLocation();
   const from = location?.state;
   const navigate = useNavigate();
@@ -54,7 +54,7 @@ const Register = () => {
   };
 
   const handleCreateUser = (data) => {
-    console.log(data);
+    // console.log(data);
     data.password = data.password.replace(/\s+/g, "");
     const { email, password, name } = data;
 
@@ -85,7 +85,7 @@ const Register = () => {
 
     createUser(email, password)
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         const updateInfo = {
           displayName: name,
           photoURL: uploadedImage,
@@ -106,7 +106,7 @@ const Register = () => {
             // eslint-disable-next-line no-unused-vars
             const { password, photo, ...userData } = data;
 
-            console.log(userData);
+            // console.log(userData);
             const userInfoDB = {
               ...userData,
               uid: result.user.uid,

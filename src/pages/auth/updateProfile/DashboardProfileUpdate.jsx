@@ -24,6 +24,7 @@ const DashboardProfileUpdate = () => {
     },
   });
 
+  // eslint-disable-next-line no-unused-vars
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const handleImageUpload = (e) => {
