@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import { toast } from "react-toastify";
 import useAxiosInstance from "../../../hooks/useAxiosInstance";
@@ -48,36 +48,41 @@ const DashboardProfileUpdate = () => {
       });
   };
 
-const handleProfileUpdate = async (data) => {
-  const updateInfo = {
-    displayName: data.name,
-    ...(uploadedImage && { photoURL: uploadedImage }),
-  };
-
-  try {
-    await updateUserProfile(updateInfo);
-    Swal.fire("Profile Update successfully! Redirecting to your previous page...");
-    navigate(-1);
-setLoading(false)
-    const userInfoDB = {
-      name: data.name,
-      ...(uploadedImage ? { photo: uploadedImage } : { photo: user?.photoURL }),
-      uid: user?.uid,
+  const handleProfileUpdate = async (data) => {
+    const updateInfo = {
+      displayName: data.name,
+      ...(uploadedImage && { photoURL: uploadedImage }),
     };
 
-    const res = await axiosinstance.patch("/users/profile", userInfoDB);
-    console.log(res.data);
+    try {
+      await updateUserProfile(updateInfo);
+      Swal.fire(
+        "Profile Update successfully! Redirecting to your previous page..."
+      );
+      navigate(-1);
+      setLoading(false);
+      const userInfoDB = {
+        name: data.name,
+        ...(uploadedImage
+          ? { photo: uploadedImage }
+          : { photo: user?.photoURL }),
+        uid: user?.uid,
+      };
 
-  } catch (error) {
-    setError(error.code);
-  }
-};
-
+      const res = await axiosinstance.patch("/users/profile", userInfoDB);
+      console.log(res.data);
+    } catch (error) {
+      setError(error.code);
+    }
+  };
 
   return (
     <div className="py-12">
       <div className="card mx-auto bg-base-100 border border-gray-200 w-full shadow-2xl">
-        <form onSubmit={handleSubmit(handleProfileUpdate)} className="card-body">
+        <form
+          onSubmit={handleSubmit(handleProfileUpdate)}
+          className="card-body"
+        >
           <h1 className="text-3xl text-center font-bold mb-4">
             Update Your Profile
           </h1>
@@ -148,6 +153,11 @@ setLoading(false)
             <button type="submit" className="btn bg-[#2F80ED80] w-full mt-4">
               Update Profile
             </button>
+            <Link to={-1}>
+              <button type="submit" className="btn bg-[#2F80ED80] w-full mt-4">
+                Cancel
+              </button>
+            </Link>
           </div>
 
           {error && (

@@ -6,7 +6,9 @@ import ThemeToggle from "../shared/themeToggle/ThemeToggle";
 import Swal from "sweetalert2";
 import "./Layout.css";
 import DashboardNavbar from "../shared/dashboardNavbar/Dashboardnavbar";
+
 const DashboardLayout = () => {
+
   const { user, logoutUser } = useAuth();
   const handleLogout = () => {
     Swal.fire({
@@ -67,6 +69,7 @@ const DashboardLayout = () => {
                   <Link to={"/dashboard/profile-update"}>
                   <FaEdit className=" text-primary" size={25} />
                   </Link>
+       
                 </div>
                 <p className="text-sm text-gray-500">{user?.email}</p>
                 <ThemeToggle />
