@@ -47,7 +47,7 @@ const DashboardLayout = () => {
         <div className="flex flex-col justify-between h-full w-72">
           {/* Top Part */}
           <div>
-            <div className="sticky top-0  bg-base-100">
+            <div className="sticky top-0 z-10  bg-base-100">
               <Logo />
               {/* User Info */}
               <div className="mb-4 text-center">
@@ -68,7 +68,7 @@ const DashboardLayout = () => {
             </div>
 
             {/* Nav Links */}
-            <ul className="menu p-4 space-y-2">
+            <ul className="menu p-4 z-0 space-y-2">
               <li>
                 <NavLink
                   to="/"
@@ -76,7 +76,7 @@ const DashboardLayout = () => {
                     isActive ? "active font-bold" : ""
                   }
                 >
-                  Home 
+                  Home
                 </NavLink>
               </li>
               <li>
@@ -97,6 +97,26 @@ const DashboardLayout = () => {
                   }
                 >
                   Work Sheet
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/payment-history"
+                  className={({ isActive }) =>
+                    isActive ? "active font-bold" : ""
+                  }
+                >
+                  Payment History
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/employee-list"
+                  className={({ isActive }) =>
+                    isActive ? "active font-bold" : ""
+                  }
+                >
+                  EmployeeListPage
                 </NavLink>
               </li>
 

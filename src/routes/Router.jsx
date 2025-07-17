@@ -11,6 +11,8 @@ import Contact from "../pages/contact/Contact";
 import DashboardHome from "../pages/dashboard/dashboardHome/home/DashboardHome";
 import WorkSheetPage from "../pages/dashboard/employ/workSheetPage/WorkSheetPage";
 import UpdateProfile from "../pages/auth/updateProfile/UpdateProfile";
+import PaymentHistory from "../pages/dashboard/employ/payment/PaymentHistory";
+import EmployeeListPage from "../pages/dashboard/hr/employeeListPage/EmployeeListPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -60,6 +62,15 @@ const router = createBrowserRouter([
         path: "work-sheet",
         Component: WorkSheetPage,
       },
+      {
+        path:"payment-history",
+        Component:PaymentHistory
+      },
+      {
+        path:"employee-list",
+        Component:EmployeeListPage
+      }
+
     ],
   },
   {
