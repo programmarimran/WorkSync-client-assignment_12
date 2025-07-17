@@ -6,8 +6,12 @@ import ThemeToggle from "../shared/themeToggle/ThemeToggle";
 import Swal from "sweetalert2";
 import "./Layout.css";
 import DashboardNavbar from "../shared/dashboardNavbar/Dashboardnavbar";
+import useUserRole from "../hooks/useUserRole";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 
 const DashboardLayout = () => {
+  const { role, roleLoading } = useUserRole();
 
   const { user, logoutUser } = useAuth();
   const handleLogout = () => {
@@ -25,13 +29,25 @@ const DashboardLayout = () => {
       }
     });
   };
+  if (roleLoading) {
+    return (
+      <motion.h2
+        className="mt-6 text-xl font-semibold text-gray-700 dark:text-gray-200"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: [0, 1, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+      >
+        Please wait...
+      </motion.h2>
+    );
+  }
   return (
     <div className="drawer lg:drawer-open">
       <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
 
       {/* Page Content */}
       <div className="drawer-content flex flex-col bg-base-100 min-h-screen">
-        {/* 🧭 Top Navbar */}
+        {/*  Top Navbar */}
 
         <div className=" bg-base-100  lg:hidden z-50  sticky top-0">
           <div className=" w-11/12 mx-auto">
@@ -67,9 +83,8 @@ const DashboardLayout = () => {
                     {user?.displayName || "User Name"}
                   </h2>
                   <Link to={"/dashboard/profile-update"}>
-                  <FaEdit className=" text-primary" size={25} />
+                    <FaEdit className=" text-primary" size={25} />
                   </Link>
-       
                 </div>
                 <p className="text-sm text-gray-500">{user?.email}</p>
                 <ThemeToggle />
@@ -99,38 +114,54 @@ const DashboardLayout = () => {
                   Dashboard Home
                 </NavLink>
               </li>
-              <li>
-                <NavLink
-                  to="/dashboard/work-sheet"
-                  className={({ isActive }) =>
-                    isActive ? "active font-bold" : ""
-                  }
-                >
-                  Work Sheet
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/dashboard/payment-history"
-                  className={({ isActive }) =>
-                    isActive ? "active font-bold" : ""
-                  }
-                >
-                  Payment History
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/dashboard/employee-list"
-                  className={({ isActive }) =>
-                    isActive ? "active font-bold" : ""
-                  }
-                >
-                  EmployeeListPage
-                </NavLink>
-              </li>
-
-              {/* Add more links here */}
+              {role === "Employee" && (
+                <>
+                  <li>
+                    <NavLink
+                      to="/dashboard/work-sheet"
+                      className={({ isActive }) =>
+                        isActive ? "active font-bold" : ""
+                      }
+                    >
+                      Work Sheet
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/dashboard/payment-history"
+                      className={({ isActive }) =>
+                        isActive ? "active font-bold" : ""
+                      }
+                    >
+                      Payment History
+                    </NavLink>
+                  </li>
+                </>
+              )}
+              {role === "HR" && (
+                <>
+                  <li>
+                    <NavLink
+                      to="/dashboard/employee-list"
+                      className={({ isActive }) =>
+                        isActive ? "active font-bold" : ""
+                      }
+                    >
+                      EmployeeListPage
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/dashboard/progress"
+                      className={({ isActive }) =>
+                        isActive ? "active font-bold" : ""
+                      }
+                    >
+                      Progress Page
+                    </NavLink>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
 

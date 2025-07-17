@@ -15,9 +15,14 @@ import PaymentHistory from "../pages/dashboard/employ/payment/PaymentHistory";
 import EmployeeListPage from "../pages/dashboard/hr/employeeListPage/EmployeeListPage";
 import EmployeeDetailsPage from "../pages/dashboard/hr/details/EmployeeDetailsPage";
 import DashboardProfileUpdate from "../pages/auth/updateProfile/DashboardProfileUpdate";
+import ForbiddenPage from "../pages/error/ForbiddenPage";
+import EmployeeRoute from "./EmployeeRoute";
+import HrRoute from "./HrRoute";
+import ProgressPage from "../pages/dashboard/hr/progress/Progresspage";
 const router = createBrowserRouter([
   {
     path: "/",
+    errorElement: ErrorPage,
     Component: HomeLayout,
     children: [
       {
@@ -32,12 +37,14 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
+    errorElement: ErrorPage,
     Component: AuthLayout,
     children: [
       {
         path: "login",
         Component: Login,
       },
+
       {
         path: "register",
         Component: Register,
@@ -50,6 +57,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
+    errorElement: ErrorPage,
     element: (
       <PrivateRoute>
         <DashboardLayout />
@@ -61,31 +69,58 @@ const router = createBrowserRouter([
         Component: DashboardHome,
       },
       {
-        path:"profile-update",
-        Component:DashboardProfileUpdate
+        path: "profile-update",
+        Component: DashboardProfileUpdate,
       },
       {
         path: "work-sheet",
-        Component: WorkSheetPage,
+        element: (
+          <EmployeeRoute>
+            <WorkSheetPage />
+          </EmployeeRoute>
+        ),
       },
       {
-        path:"payment-history",
-        Component:PaymentHistory
+        path: "payment-history",
+        element: (
+          <EmployeeRoute>
+            <PaymentHistory />
+          </EmployeeRoute>
+        ),
       },
       {
-        path:"employee-list",
-        Component:EmployeeListPage
+        path: "employee-list",
+        element: (
+          <HrRoute>
+            <EmployeeListPage />
+          </HrRoute>
+        ),
       },
       {
-        path:"details/:slug",
-        Component:EmployeeDetailsPage
-      }
-
+        path: "details/:slug",
+        element: (
+          <HrRoute>
+            <EmployeeDetailsPage />
+          </HrRoute>
+        ),
+      },
+      {
+        path: "progress",
+        element: (
+          <HrRoute>
+            <ProgressPage />
+          </HrRoute>
+        ),
+      },
     ],
   },
   {
     path: "*",
     Component: ErrorPage,
+  },
+  {
+    path: "forbidden",
+    Component: ForbiddenPage,
   },
 ]);
 export default router;

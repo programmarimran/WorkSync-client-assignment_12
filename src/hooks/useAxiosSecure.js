@@ -9,7 +9,7 @@ const axiosSecure = axios.create({
 
 const useAxiosSecure = () => {
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, logoutUser } = useAuth();
 
   useEffect(() => {
     if (!user) return;
@@ -28,7 +28,11 @@ const useAxiosSecure = () => {
       (res) => res,
       (error) => {
         const status = error?.response?.status;
-        if (status === 401 || status === 403) {
+        if (status === 401) {
+          logoutUser();
+          navigate("/login")
+        }
+        if ( status === 403) {
           console.warn("🚫 Unauthorized or Forbidden, redirecting...");
           navigate("/forbidden");
         }

@@ -17,6 +17,7 @@ const AuthProvider = ({ children }) => {
   console.log(user);
   const [loading, setLoading] = useState(true);
   const loginWithGoogle = () => {
+    setLoading(true)
     return signInWithPopup(auth, provider);
   };
   const createUser = (email, password) => {

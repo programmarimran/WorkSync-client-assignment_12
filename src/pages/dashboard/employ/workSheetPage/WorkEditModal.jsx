@@ -11,7 +11,7 @@ const WorkEditModal = ({ isOpen, setIsOpen, currentEditWork, handleUpdate }) => 
     if (currentEditWork) {
       setTask(currentEditWork.task);
       setHours(currentEditWork.hours);
-      setEditDate(new Date(currentEditWork.date));
+      setEditDate(new Date(currentEditWork.submittedAt));
     }
   }, [currentEditWork]);
 
@@ -29,7 +29,7 @@ const WorkEditModal = ({ isOpen, setIsOpen, currentEditWork, handleUpdate }) => 
           <select
             value={task}
             onChange={(e) => setTask(e.target.value)}
-            className="block w-full border border-gray-300 dark:border-gray-600 rounded p-2 bg-transparent"
+            className="block w-full border border-gray-300 dark:bg-gray-500 dark:border-gray-600 rounded p-2 bg-transparent"
           >
             <option value="Sales">Sales</option>
             <option value="Support">Support</option>

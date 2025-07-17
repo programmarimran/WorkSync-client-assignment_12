@@ -5,7 +5,6 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import Swal from "sweetalert2";
 
-
 const PaymentModal = ({ isOpen, setIsOpen, employee }) => {
   const [selectedYear, setSelectedYear] = useState(new Date());
   const year = selectedYear.getFullYear();
@@ -37,6 +36,7 @@ const PaymentModal = ({ isOpen, setIsOpen, employee }) => {
       salary: employee.salary,
       month: parseInt(formData.month),
       year: year,
+      submittedAt: new Date(),
     };
     mutation.mutate(payload);
   };

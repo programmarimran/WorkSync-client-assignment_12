@@ -5,16 +5,13 @@ import useAuth from "../../../../hooks/useAuth";
 import WorkSheetTable from "./WorkSheetTable";
 import WorkEditModal from "./WorkEditModal";
 import DatePicker from "react-datepicker";
+import { useForm, Controller } from "react-hook-form";
 import "react-datepicker/dist/react-datepicker.css";
 
 const WorkSheetPage = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
-
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [task, setTask] = useState("");
-  const [hours, setHours] = useState(0);
 
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
   const [currentEditWork, setCurrentEditWork] = useState(null);
@@ -25,13 +22,19 @@ const WorkSheetPage = () => {
     enabled: !!user.email,
   });
 
+  const { register, handleSubmit, control, reset } = useForm({
+    defaultValues: {
+      task: "",
+      hours: "",
+      submittedAt: new Date(),
+    },
+  });
+
   const addWorkMutation = useMutation({
     mutationFn: (newWork) => axiosSecure.post("/works", newWork),
     onSuccess: () => {
       queryClient.invalidateQueries(["works", user.email]);
-      setTask("");
-      setHours(0);
-      setSelectedDate(new Date());
+      reset({ task: "", hours: "", submittedAt: new Date() });
     },
   });
 
@@ -48,13 +51,14 @@ const WorkSheetPage = () => {
     onSuccess: () => queryClient.invalidateQueries(["works", user.email]),
   });
 
-  const handleAddWork = (e) => {
-    e.preventDefault();
+  const onSubmit = (data) => {
     addWorkMutation.mutate({
-      task,
-      hours: Number(hours),
-      date: selectedDate,
+      task: data.task,
+      hours: Number(data.hours),
+      submittedAt: data.submittedAt,
       email: user.email,
+      month: new Date(data.submittedAt).getMonth(),
+      year: new Date(data.submittedAt).getFullYear(),
     });
   };
 
@@ -73,29 +77,49 @@ const WorkSheetPage = () => {
 
   return (
     <div className="space-y-4">
-      <form onSubmit={handleAddWork} className="grid grid-cols-4 gap-2">
-        <select value={task} onChange={(e) => setTask(e.target.value)} className="input input-bordered">
+      <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-4 gap-2">
+        <select {...register("task", { required: true })} className="input input-bordered">
           <option value="">Select Task</option>
           <option value="Sales">Sales</option>
           <option value="Support">Support</option>
           <option value="Content">Content</option>
           <option value="Paper-work">Paper-work</option>
         </select>
+
         <input
           type="number"
-          value={hours}
-          onChange={(e) => setHours(e.target.value)}
+          {...register("hours", { required: true, min: 0 })}
           placeholder="Hours"
           className="input input-bordered"
         />
-        <DatePicker selected={selectedDate} onChange={(date) => setSelectedDate(date)} className="input input-bordered" />
-        <button type="submit" className="btn btn-primary">{addWorkMutation.isLoading ? "Adding..." : "Add"}</button>
+
+        <Controller
+          control={control}
+          name="submittedAt"
+          render={({ field }) => (
+            <DatePicker
+              {...field}
+              selected={field.value}
+              onChange={(date) => field.onChange(date)}
+              className="input input-bordered"
+            />
+          )}
+        />
+
+        <button type="submit" className="btn btn-primary">
+          {addWorkMutation.isLoading ? "Adding..." : "Add"}
+        </button>
       </form>
 
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <WorkSheetTable works={works} onEdit={handleEdit} onDelete={handleDelete} deleteLoading={deleteWorkMutation.isLoading} />
+        <WorkSheetTable
+          works={works}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+          deleteLoading={deleteWorkMutation.isLoading}
+        />
       )}
 
       <WorkEditModal

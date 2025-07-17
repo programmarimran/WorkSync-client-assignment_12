@@ -5,8 +5,8 @@ const WorkSheetTable = ({ works, onEdit, onDelete, deleteLoading }) => {
   const columns = useMemo(() => [
     { header: "Task", accessorKey: "task" },
     { header: "Hours", accessorKey: "hours" },
-    { header: "Date", accessorKey: "date",
-      cell: ({ row }) => new Date(row.original.date).toLocaleDateString()
+    { header: "Date", accessorKey: "submittedAt",
+      cell: ({ row }) => new Date(row.original.submittedAt).toLocaleDateString()
     },
     {
       header: "Actions",

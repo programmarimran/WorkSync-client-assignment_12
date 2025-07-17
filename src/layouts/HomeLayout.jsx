@@ -6,14 +6,18 @@ import ScrollToTopButton from "../components/ScrollToTopButton";
 import useScrollLevel from "../hooks/usescrollLevel";
 
 const HomeLayout = () => {
-  const level = useScrollLevel([70, 500]);
-  const textClasses = ["text-black", "text-white backdrop-blur-lg ", "text-red"];
+  const level = useScrollLevel([70, 400]);
+  const textClasses = [
+    "text-black dark:text-white",
+    "text-white backdrop-blur-sm ",
+    "text-black  dark:text-white bg-gray-100 dark:bg-gray-600 shadow",
+  ];
   return (
     <>
-      <div
-        className={`${textClasses[level]} w-11/12 mx-auto sticky top-0 z-50`}
-      >
-        <Navbar></Navbar>
+      <div className={`${textClasses[level]} sticky top-0 z-50`}>
+        <div className="w-11/12  mx-auto ">
+          <Navbar></Navbar>
+        </div>
       </div>
       <main className="  w-11/12 mx-auto min-h-[calc(100vh-100px)]">
         <Outlet></Outlet>

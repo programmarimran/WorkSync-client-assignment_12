@@ -49,7 +49,7 @@ const Register = () => {
       })
       .catch(() => {
         setError("Image upload failed");
-        setLoading(false);
+        
       });
   };
 
