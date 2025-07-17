@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import Logo from "../logo/Logo";
 import ThemeToggle from "../themeToggle/ThemeToggle";
+import { FaEdit } from "react-icons/fa";
 
 const DashboardHamburgerDrawer = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -71,7 +72,7 @@ const DashboardHamburgerDrawer = () => {
           {/* Left Drawer */}
           <div
             ref={drawerRef}
-            className="w-72 h-full backdrop-blur-sm bg-white dark:bg-gray-900 shadow-lg p-4 flex flex-col justify-between relative"
+            className="overflow-auto scrollbar-hide w-72 h-full backdrop-blur-sm bg-white dark:bg-gray-900 shadow-lg p-4 flex flex-col justify-between relative"
           >
             {/* X Button */}
             <button
@@ -81,8 +82,9 @@ const DashboardHamburgerDrawer = () => {
               ✕
             </button>
 
-            <div className="pt-10">
-              <div className=" flex gap-1 items-center">
+            <div className="pt-10 ">
+             <div className=" backdrop-blur-2xl sticky top-0 z-50">
+               <div className=" flex gap-1 items-center">
                 <Logo />
                 <h2 className=" md:hidden font-poppins -ml-2 text-3xl font-bold">
                   Work<span className="text-primary text-4xl">S</span>ync
@@ -96,74 +98,80 @@ const DashboardHamburgerDrawer = () => {
                     className="w-16 h-16 mx-auto rounded-full border-2 border-primary"
                   />
                 )}
-                <h2 className="text-lg font-semibold mt-2">
-                  {user?.displayName || "User Name"}
-                </h2>
+                <div className=" flex items-center justify-center">
+                  <h2 className="text-lg mx-5 font-semibold mt-2">
+                    {user?.displayName || "User Name"}
+                  </h2>
+                  <Link to={"/dashboard/profile-update"}>
+                    <FaEdit className=" text-primary" size={25} />
+                  </Link>
+                </div>
                 <p className="text-sm text-gray-500">{user?.email}</p>
                 <ThemeToggle />
               </div>
               <div className="divider"></div>
+             </div>
 
               {/* Nav Links */}
-            <ul className="menu p-4 z-0 space-y-2">
-              <li>
-                <NavLink
-                  to="/" 
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={({ isActive }) =>
-                    isActive ? "active font-bold" : ""
-                  }
-                >
-                  Home
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/dashboard" 
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={({ isActive }) =>
-                    isActive ? "active font-bold" : ""
-                  }
-                >
-                  Dashboard Home
-                </NavLink>
-              </li>
-              <li>
-                <NavLink 
-                  to="/dashboard/work-sheet" 
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={({ isActive }) =>
-                    isActive ? "active font-bold" : ""
-                  }
-                >
-                  Work Sheet
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/dashboard/payment-history" 
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={({ isActive }) =>
-                    isActive ? "active font-bold" : ""
-                  }
-                >
-                  Payment History
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/dashboard/employee-list" 
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={({ isActive }) =>
-                    isActive ? "active font-bold" : ""
-                  }
-                >
-                  EmployeeListPage
-                </NavLink>
-              </li>
+              <ul className="menu p-4 z-10 space-y-2">
+                <li>
+                  <NavLink
+                    to="/"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={({ isActive }) =>
+                      isActive ? "active font-bold" : ""
+                    }
+                  >
+                    Home
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={({ isActive }) =>
+                      isActive ? "active font-bold" : ""
+                    }
+                  >
+                    Dashboard Home
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/work-sheet"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={({ isActive }) =>
+                      isActive ? "active font-bold" : ""
+                    }
+                  >
+                    Work Sheet
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/payment-history"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={({ isActive }) =>
+                      isActive ? "active font-bold" : ""
+                    }
+                  >
+                    Payment History
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/employee-list"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={({ isActive }) =>
+                      isActive ? "active font-bold" : ""
+                    }
+                  >
+                    EmployeeListPage
+                  </NavLink>
+                </li>
 
-              {/* Add more links here */}
-            </ul>
+                {/* Add more links here */}
+              </ul>
             </div>
 
             <div className="p-4">
