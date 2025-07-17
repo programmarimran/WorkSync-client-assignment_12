@@ -6,7 +6,7 @@ import PaymentModal from "./PaymentModal";
 const EmployeeListPage = () => {
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+console.log(selectedEmployee)
   const handlePayClick = (employee) => {
     setSelectedEmployee(employee);
     setIsModalOpen(true);
