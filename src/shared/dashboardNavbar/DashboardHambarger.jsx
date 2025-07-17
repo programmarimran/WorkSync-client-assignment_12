@@ -104,30 +104,61 @@ const DashboardHamburgerDrawer = () => {
               </div>
               <div className="divider"></div>
 
-              <ul className="menu p-4 space-y-2">
-                <li>
-                  <NavLink
-                    to="/dashboard"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={({ isActive }) =>
-                      isActive ? "active font-bold" : ""
-                    }
-                  >
-                    Dashboard Home
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/dashboard/work-sheet"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={({ isActive }) =>
-                      isActive ? "active font-bold" : ""
-                    }
-                  >
-                    Work Sheet
-                  </NavLink>
-                </li>
-              </ul>
+              {/* Nav Links */}
+            <ul className="menu p-4 z-0 space-y-2">
+              <li>
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive ? "active font-bold" : ""
+                  }
+                >
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard"
+                  className={({ isActive }) =>
+                    isActive ? "active font-bold" : ""
+                  }
+                >
+                  Dashboard Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/work-sheet"
+                  className={({ isActive }) =>
+                    isActive ? "active font-bold" : ""
+                  }
+                >
+                  Work Sheet
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/payment-history"
+                  className={({ isActive }) =>
+                    isActive ? "active font-bold" : ""
+                  }
+                >
+                  Payment History
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/employee-list"
+                  className={({ isActive }) =>
+                    isActive ? "active font-bold" : ""
+                  }
+                >
+                  EmployeeListPage
+                </NavLink>
+              </li>
+
+              {/* Add more links here */}
+            </ul>
             </div>
 
             <div className="p-4">
