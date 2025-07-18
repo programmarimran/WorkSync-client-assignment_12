@@ -19,6 +19,8 @@ import ForbiddenPage from "../pages/error/ForbiddenPage";
 import EmployeeRoute from "./EmployeeRoute";
 import HrRoute from "./HrRoute";
 import ProgressPage from "../pages/dashboard/hr/progress/Progresspage";
+import AllEmployeeListPage from "../pages/dashboard/admin/allEmploypagelist/AllEmployeeListPage";
+import AdminRoute from "./AdminRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -112,6 +114,16 @@ const router = createBrowserRouter([
           </HrRoute>
         ),
       },
+      {
+        path: "all-employee-list",
+        element: (
+          <AdminRoute>
+            <AllEmployeeListPage />
+          </AdminRoute>
+        ),
+      },
+  
+     
     ],
   },
   {

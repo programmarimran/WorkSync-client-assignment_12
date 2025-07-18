@@ -17,9 +17,12 @@ const DashboardHamburgerDrawer = () => {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
       confirmButtonText: "Yes, Logout it!",
+      buttonsStyling: false,
+      customClass: {
+        confirmButton: "bg-primary mr-1 text-white px-4 py-2 rounded",
+        cancelButton: "bg-red-500 ml-1 text-white px-4 py-2 rounded",
+      },
     }).then((result) => {
       if (result.isConfirmed) {
         logoutUser();

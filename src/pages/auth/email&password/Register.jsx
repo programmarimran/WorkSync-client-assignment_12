@@ -118,6 +118,7 @@ const Register = () => {
               console.log(res.data);
             });
             navigate(`${from || "/"}`);
+            
             setUser(result.user);
           })
           .catch((error) => {
