@@ -189,12 +189,12 @@ const DashboardLayout = () => {
                   </li>
                   <li>
                     <NavLink
-                      to="/dashboard/main-admin-payroll"
+                      to="/dashboard/contac-message"
                       className={({ isActive }) =>
                         isActive ? "active font-bold" : ""
                       }
                     >
-                     Main Admin Payroll
+                      Contact Messages 
                     </NavLink>
                   </li>
                 </>

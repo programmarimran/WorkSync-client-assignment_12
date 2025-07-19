@@ -7,7 +7,6 @@ import Login from "../pages/auth/email&password/Login";
 import Register from "../pages/auth/email&password/Register";
 import DashboardLayout from "../layouts/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
-import Contact from "../pages/contact/Contact";
 import DashboardHome from "../pages/dashboard/dashboardHome/home/DashboardHome";
 import WorkSheetPage from "../pages/dashboard/employ/workSheetPage/WorkSheetPage";
 import UpdateProfile from "../pages/auth/updateProfile/UpdateProfile";
@@ -22,6 +21,8 @@ import ProgressPage from "../pages/dashboard/hr/progress/Progresspage";
 import AllEmployeeListPage from "../pages/dashboard/admin/allEmploypagelist/AllEmployeeListPage";
 import AdminRoute from "./AdminRoute";
 import AdminPayrollPage from "../pages/dashboard/admin/payrollPage/AdminPayrollPage";
+import ContactUs from "../pages/contact/ContactUs";
+import AdminContactMessages from "../pages/dashboard/admin/contacmessage/AdminContactMessages";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,8 +34,8 @@ const router = createBrowserRouter([
         Component: Home,
       },
       {
-        path: "contact",
-        Component: Contact,
+        path: "contact-us",
+        Component: ContactUs,
       },
     ],
   },
@@ -131,6 +132,10 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
+      {
+        path:"contac-message",
+        element:<AdminRoute><AdminContactMessages/></AdminRoute>
+      }
     
     ],
   },
