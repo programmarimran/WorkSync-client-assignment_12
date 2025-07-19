@@ -7,13 +7,13 @@ const EmployeeListPage = () => {
   const navigate = useNavigate();
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  console.log(selectedEmployee);
+  // console.log(selectedEmployee);
   const handlePayClick = (employee) => {
     setSelectedEmployee(employee);
     setIsModalOpen(true);
   };
   const handleDetailsClick = (employee) => {
-    console.log(employee)
+    // console.log(employee)
     navigate(`/dashboard/details/${employee._id}`);
   };
   return (

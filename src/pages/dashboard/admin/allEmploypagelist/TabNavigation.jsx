@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const TabNavigation = ({ setTabLevel }) => {
   const [activeTab, setActiveTab] = useState("first");
-  console.log(activeTab)
+  // console.log(activeTab)
 
   const tabs = [
     { id: "first", label: "All Verified Employees", level: 1 },

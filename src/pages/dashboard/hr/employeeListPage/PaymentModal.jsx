@@ -31,12 +31,14 @@ const PaymentModal = ({ isOpen, setIsOpen, employee }) => {
   const onSubmit = (formData) => {
     const payload = {
       employeeId: employee._id,
-      employeeEmail: employee.email,
       bank_account_no: employee.bank_account_no,
-      salary: employee.salary,
+      employeeEmail: employee.email,
       month: parseInt(formData.month),
       year: year,
-      submittedAt: new Date(),
+      salary: employee.salary,
+      isPaid:false,
+      paymentDate:"",
+      transactionId:""
     };
     mutation.mutate(payload);
   };

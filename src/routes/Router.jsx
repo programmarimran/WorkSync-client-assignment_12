@@ -21,6 +21,7 @@ import HrRoute from "./HrRoute";
 import ProgressPage from "../pages/dashboard/hr/progress/Progresspage";
 import AllEmployeeListPage from "../pages/dashboard/admin/allEmploypagelist/AllEmployeeListPage";
 import AdminRoute from "./AdminRoute";
+import AdminPayrollPage from "../pages/dashboard/admin/payrollPage/AdminPayrollPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -122,8 +123,15 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
-  
-     
+      {
+        path: "admin-payroll",
+        element: (
+          <AdminRoute>
+            <AdminPayrollPage />
+          </AdminRoute>
+        ),
+      },
+    
     ],
   },
   {

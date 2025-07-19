@@ -174,21 +174,31 @@ const DashboardLayout = () => {
                         isActive ? "active font-bold" : ""
                       }
                     >
-                      AllEmployeeListPage
+                      All EmployeeList
                     </NavLink>
                   </li>
-                </>
-              )}
-                 <li>
+                  <li>
                     <NavLink
-                      to="/dashboard/tab"
+                      to="/dashboard/admin-payroll"
                       className={({ isActive }) =>
                         isActive ? "active font-bold" : ""
                       }
                     >
-                      TabNavigation
+                      Admin Payroll
                     </NavLink>
                   </li>
+                  <li>
+                    <NavLink
+                      to="/dashboard/main-admin-payroll"
+                      className={({ isActive }) =>
+                        isActive ? "active font-bold" : ""
+                      }
+                    >
+                     Main Admin Payroll
+                    </NavLink>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
 
