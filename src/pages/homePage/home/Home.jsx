@@ -1,14 +1,16 @@
+import useScrollToSection from "../../../hooks/useScrollToSection.js";
 import Banner from "../banner/Banner";
 import SubHome from "./SubHome";
 
 const Home = () => {
+  const { sectionRef, scrollToSection } = useScrollToSection();
   return (
     <>
       <section>
-        <Banner></Banner>
+        <Banner scrollToSection={scrollToSection}></Banner>
       </section>
       {/* sub section with API */}
-      <SubHome />
+      <SubHome sectionRef={sectionRef}/>
     </>
   );
 };

@@ -26,7 +26,7 @@ const Footer = () => {
   };
   return (
     <footer className="bg-neutral text-neutral-content px-6 py-10 ">
-      <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div className="w-11/12 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
         {/* Brand + Contact */}
         <div className="space-y-4">
           <div className=" flex items-center">
@@ -119,7 +119,7 @@ const Footer = () => {
             <h4 className="text-lg font-bold">Connect Us</h4>
             <div className="flex space-x-4">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/mdimran.hasan.79827803"
                 target="_blank"
                 rel="noreferrer"
                 className="bg-blue-600 hover:bg-blue-800 text-white p-3 rounded-full transition duration-300"
@@ -127,7 +127,7 @@ const Footer = () => {
                 <FaFacebookF />
               </a>
               <a
-                href="https://twitter.com"
+                href="https://x.com/imranhasan72751"
                 target="_blank"
                 rel="noreferrer"
                 className="bg-sky-500 hover:bg-sky-700 text-white p-3 rounded-full transition duration-300"
@@ -135,7 +135,7 @@ const Footer = () => {
                 <FaTwitter />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/programmarimran/"
                 target="_blank"
                 rel="noreferrer"
                 className="bg-blue-700 hover:bg-blue-900 text-white p-3 rounded-full transition duration-300"

@@ -6,8 +6,9 @@ import ServicesSection from "../services/ServicesSection";
 import TeamSection from "../teamSection/TeamSection";
 import CustomerReviewsSection from "../customerReviewSection/CustomerReviewsSection";
 import FaqSection from "../faqSection/FaqSection";
+import BeLocation from "../beLocation/BeLocation";
 
-const SubHome = () => {
+const SubHome = ({ sectionRef }) => {
   const axiosInstance = useAxiosInstance();
   const { data, isLoading, error } = useQuery({
     queryKey: ["homeData"],
@@ -26,11 +27,11 @@ const SubHome = () => {
       </div>
     );
 
-  const { services, testimonials, teamMembers,faqs } = data || {};
+  const { services, testimonials, teamMembers, faqs } = data || {};
 
   return (
     <div>
-      <section>
+      <section ref={sectionRef}>
         <ServicesSection services={services} />
       </section>
 
@@ -40,6 +41,10 @@ const SubHome = () => {
       <section>
         <TeamSection teamMembers={teamMembers} />
       </section>
+      <section>
+        <BeLocation />
+      </section>
+
       <section>
         <FaqSection faqs={faqs} />
       </section>

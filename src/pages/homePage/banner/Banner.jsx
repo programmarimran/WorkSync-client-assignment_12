@@ -3,7 +3,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-const Banner = () => {
+const Banner = ({scrollToSection}) => {
   return (
     <Swiper
       modules={[Autoplay, Pagination]}
@@ -45,7 +45,7 @@ const Banner = () => {
               <p className="text-sm md:text-lg text-gray-300 max-w-xl">
                 {slide.description}
               </p>
-              <button className="btn btn-primary mt-2">Get Started</button>
+              <button onClick={scrollToSection} className="btn btn-primary mt-2">Get Started</button>
              </div>
             </div>
           </div>

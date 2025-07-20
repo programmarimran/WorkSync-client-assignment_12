@@ -24,7 +24,7 @@ const HomeLayout = () => {
           <Outlet></Outlet>
         </main>
       </div>
-      <div className="">
+      <div className=" ">
         <Footer></Footer>
       </div>
       <ScrollToTopButton />
