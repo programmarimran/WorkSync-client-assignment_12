@@ -5,6 +5,7 @@ import ServicesSection from "../services/ServicesSection";
 // import TestimonialsSection from "../testimonials/TestimonialsSection";
 import TeamSection from "../teamSection/TeamSection";
 import CustomerReviewsSection from "../customerReviewSection/CustomerReviewsSection";
+import FaqSection from "../faqSection/FaqSection";
 
 const SubHome = () => {
   const axiosInstance = useAxiosInstance();
@@ -25,19 +26,22 @@ const SubHome = () => {
       </div>
     );
 
-  const { services, testimonials ,teamMembers} = data || {};
+  const { services, testimonials, teamMembers,faqs } = data || {};
 
   return (
     <div>
       <section>
         <ServicesSection services={services} />
       </section>
- 
+
       <section>
-        <CustomerReviewsSection testimonials={testimonials}/>
+        <CustomerReviewsSection testimonials={testimonials} />
       </section>
       <section>
-        <TeamSection teamMembers={teamMembers}/>
+        <TeamSection teamMembers={teamMembers} />
+      </section>
+      <section>
+        <FaqSection faqs={faqs} />
       </section>
     </div>
   );
