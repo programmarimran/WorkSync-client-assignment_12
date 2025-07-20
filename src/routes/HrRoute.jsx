@@ -9,12 +9,17 @@ const HrRoute = ({ children }) => {
   const { role, roleLoading } = useUserRole();
   const location = useLocation();
 
-  if (loading || roleLoading) {
+  if (roleLoading) {
     return <LoadingPage />;
   }
-
+  if (loading) {
+    return <LoadingPage />;
+  }
   if (user && role === "HR") {
     return children;
+  }
+  if (roleLoading) {
+    return <LoadingPage />;
   }
 
   if (user && role !== "HR") {

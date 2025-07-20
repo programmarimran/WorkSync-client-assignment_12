@@ -8,8 +8,10 @@ import { IoMdEyeOff } from "react-icons/io";
 import { toast } from "react-toastify";
 import GoogleLogin from "../socialLogin/GoogleLogin";
 import useAuth from "../../../hooks/useAuth";
+import useAxiosInstance from "../../../hooks/useAxiosInstance";
 
 const Login = () => {
+  const axiosinstance = useAxiosInstance();
   const location = useLocation();
   const from = location?.state;
   const navigate = useNavigate();
@@ -55,7 +57,7 @@ const Login = () => {
     }
 
     loginUser(email, password)
-      .then((result) => {
+      .then(async (result) => {
         setUser(result.user);
         toast.success(
           `${
@@ -64,6 +66,13 @@ const Login = () => {
               : "Login successfully! Redirecting to home page..."
           }`
         );
+        const patchInfoDB = {
+          email: result?.user.email,
+          last_log_in: new Date().toISOString(),
+        };
+
+        await axiosinstance.patch(`/users/profile`, patchInfoDB);
+
         navigate(`${from || "/"}`);
         return;
       })
@@ -96,12 +105,8 @@ const Login = () => {
       <div className="card mx-auto bg-base-100 border border-gray-200 w-full shrink-0 shadow-2xl">
         <form onSubmit={handleSubmit(handleLoginUser)} className="card-body">
           <h1 className="text-3xl text-center font-bold">Login now!</h1>
-          <div className="md:flex flex-row-reverse">
+          <div className="flex flex-col-reverse md:flex-row-reverse ">
             <div className="flex-1 flex flex-col justify-center items-center">
-            
-
-
-
               <div className="text-center border border-[#2F80ED] rounded-2xl p-4 m-4 bg-[#2F80ED10]">
                 <h1 className="text-[#2F80ED]"> Don\'t have an account?</h1>
                 <h1>
@@ -135,22 +140,22 @@ const Login = () => {
                 />
 
                 <label className="label">Password</label>
-                <div className="relative">
+                <div className="relative bg-[#2F80ED20]">
                   <input
                     {...register("password", { required: true })}
                     type={show ? "text" : "password"}
-                    className="input w-full pr-16"
+                    className="input w-full pr-16 bg-[#2F80ED20]"
                     placeholder="Password"
                   />
                   <button
                     onClick={() => setShow(!show)}
                     type="button"
-                    className="absolute inset-y-0 right-0 flex items-center px-4 z-10"
+                    className="absolute dark:bg-[#313036f8] inset-y-0 right-0 flex items-center px-4 z-10"
                   >
                     {show ? (
-                      <MdOutlineRemoveRedEye size={24} />
+                      <MdOutlineRemoveRedEye size={30} />
                     ) : (
-                      <IoMdEyeOff size={24} />
+                      <IoMdEyeOff size={30} />
                     )}
                   </button>
                 </div>
@@ -160,7 +165,7 @@ const Login = () => {
                   </p>
                 )}
                 <p className="text-error my-3 text-sm">{passwordError}</p>
-                <button className="btn bg-[#2F80ED80] mt-4">Login</button>
+                <button className="btn border-none bg-[#2F80ED80] mt-4">Login</button>
               </fieldset>
             </div>
           </div>

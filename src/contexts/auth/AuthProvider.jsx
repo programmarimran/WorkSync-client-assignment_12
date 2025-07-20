@@ -13,6 +13,7 @@ import auth from "../../firebase/firebase.init";
 import { toast } from "react-toastify";
 const provider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
+  const [footerEmail,setFooterEmail]=useState("")
   const [user, setUser] = useState(null);
   // console.log(user);
   const [loading, setLoading] = useState(true);
@@ -60,6 +61,8 @@ const AuthProvider = ({ children }) => {
     setLoading,
     user,
     setUser,
+    setFooterEmail,
+    footerEmail
   };
   return <AuthContext value={userInfo}>{children}</AuthContext>;
 };

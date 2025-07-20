@@ -57,7 +57,7 @@ const NavProfile = ({ user, logoutUser }) => {
         <div className=" flex items-center gap-2">
         <div className=" hidden md:flex">
             <Link to={"/register"}>
-            <button className=" btn border-secondary hover:bg-primary hover:text-white text-secondary btn-outline">
+            <button className=" btn border-secondary dark:border-white dark:text-white hover:bg-primary hover:text-white text-secondary btn-outline">
               Register
             </button>
           </Link>

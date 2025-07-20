@@ -20,7 +20,7 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive
               ? "bg-primary text-white  flex items-center gap-1"
-              : "flex hover:bg-primary/10 items-center gap-1"
+              : "flex hover:bg-primary/90 hover:text-white items-center gap-1"
           }
         >
           <Home size={18} /> Home
@@ -32,7 +32,7 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive
               ? "bg-primary text-white  flex items-center gap-1"
-              : "flex hover:bg-primary/10 items-center gap-1"
+              : "flex hover:bg-primary/90 hover:text-white items-center gap-1"
           }
         >
           <LayoutDashboard size={18} /> Dashboard
@@ -44,24 +44,13 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive
               ? "bg-primary text-white  flex items-center gap-1"
-              : "flex hover:bg-primary/10  items-center gap-1"
+              : "flex hover:bg-primary/90 hover:text-white  items-center gap-1"
           }
         >
           <MessageCircle size={18} /> Contact Us
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/dashboard/work-sheet"
-          className={({ isActive }) =>
-            isActive
-              ? "bg-primary text-white  flex items-center gap-1"
-              : "flex hover:bg-primary/10 items-center gap-1 "
-          }
-        >
-          <ListTodo size={18} /> Work Sheet
-        </NavLink>
-      </li>
+
     </>
   );
   return (

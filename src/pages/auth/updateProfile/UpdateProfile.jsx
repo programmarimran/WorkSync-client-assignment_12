@@ -11,7 +11,7 @@ const UpdateProfile = () => {
   const axiosinstance = useAxiosInstance();
   const { role, roleLoading } = useUserRole();
   const [uploadedImage, setUploadedImage] = useState("");
-  const { user,loading, updateUserProfile, setLoading } = useAuth();
+  const { user, loading, updateUserProfile, setLoading } = useAuth();
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
@@ -29,7 +29,7 @@ const UpdateProfile = () => {
     }
   }, [role, roleLoading, from, navigate]);
 
-  if (roleLoading||loading) return <LoadingPage />;
+  if (roleLoading || loading) return <LoadingPage />;
   const handleImageUpload = (e) => {
     const image = e.target.files[0];
     const formData = new FormData();
@@ -78,12 +78,16 @@ const UpdateProfile = () => {
           ...userData,
           uid: user?.uid,
           last_log_in: new Date().toISOString(),
-          photo:uploadedImage
+          photo: uploadedImage,
         };
         const res = axiosinstance.put("/users/profile", userInfoDB);
-        console.log(res.data)
+        console.log(res.data);
+        setLoading(false);
       })
-      .catch((error) => setError(error.code));
+      .catch((error) => {
+        setError(error.code);
+        setLoading(false);
+      });
   };
 
   return (

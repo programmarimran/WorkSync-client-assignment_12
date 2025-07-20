@@ -9,14 +9,18 @@ const AdminRoute = ({ children }) => {
   const { role, roleLoading } = useUserRole();
   const location = useLocation();
 
-  if (loading || roleLoading) {
+  if ( roleLoading ) {
     return <LoadingPage />;
   }
-
+if(loading){
+  return <LoadingPage/>
+}
   if (user && role === "admin") {
     return children;
   }
-
+  if(roleLoading){
+    return <LoadingPage/>
+  }
   if (user && role !== "admin") {
     return <Navigate to="/forbidden" state={{ from: location }} replace />;
   }

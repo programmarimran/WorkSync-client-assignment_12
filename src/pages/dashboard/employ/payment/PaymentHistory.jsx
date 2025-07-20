@@ -1,71 +1,80 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import useAuth from "../../../../hooks/useAuth";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const PaymentHistory = () => {
+  const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const [page, setPage] = useState(1);
+  const limit = 5;
 
-  const fetchPaymentHistory = async ({ pageParam = 1 }) => {
-    const res = await axiosSecure.get(`/works/payment-history?page=${pageParam}&limit=5`);
-    return res.data;
-  };
-
-  const {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    isLoading,
-    isError,
-  } = useInfiniteQuery({
-    queryKey: ["payment-history"],
-    queryFn: fetchPaymentHistory,
-    getNextPageParam: (lastPage, allPages) => {
-      const totalFetched = allPages.flatMap(p => p.payments).length;
-      if (totalFetched < lastPage.total) {
-        return allPages.length + 1;
-      }
-      return undefined;
+  const { data, isLoading } = useQuery({
+    queryKey: ["paymentHistory", user?.email, page],
+    queryFn: async () => {
+      const res = await axiosSecure.get(
+        `/works/payment-history/${user?.email}?page=${page}&limit=${limit}`
+      );
+      return res.data;
     },
+    enabled: !!user?.email,
   });
 
-  if (isLoading) return <p className="text-center">Loading...</p>;
-  if (isError) return <p className="text-center text-red-500">Something went wrong!</p>;
+  if (isLoading) return <p className="text-center text-gray-600 dark:text-gray-300">Loading...</p>;
 
   return (
-    <div className="max-w-4xl mx-auto my-8 p-4">
-      <h2 className="text-2xl font-semibold mb-4">Payment History</h2>
-      <div className="overflow-x-auto">
-        <table className="table w-full border">
-          <thead>
+    <div className="p-4 bg-white dark:bg-gray-900 rounded-xl shadow-md">
+      <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-white">
+        Payment History
+      </h2>
+
+      <div className="overflow-x-auto rounded-md border dark:border-gray-700">
+        <table className="min-w-full text-sm text-left text-gray-700 dark:text-gray-300">
+          <thead className="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200">
             <tr>
-              <th>Month, Year</th>
-              <th>Amount</th>
-              <th>Transaction ID</th>
+              <th className="px-4 py-3">Month</th>
+              <th className="px-4 py-3">Year</th>
+              <th className="px-4 py-3">Amount</th>
+              <th className="px-4 py-3">Transaction ID</th>
+              <th className="px-4 py-3">Payment Date</th>
             </tr>
           </thead>
           <tbody>
-            {data?.pages.map(page =>
-              page.payments.map(payment => (
-                <tr key={payment.transactionId}>
-                  <td>{payment.month}, {payment.year}</td>
-                  <td>${payment.amount}</td>
-                  <td>{payment.transactionId}</td>
-                </tr>
-              ))
-            )}
+            {data?.data?.map((item, i) => (
+              <tr
+                key={i}
+                className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
+              >
+                <td className="px-4 py-2">{item.month}</td>
+                <td className="px-4 py-2">{item.year}</td>
+                <td className="px-4 py-2">${item.salary}</td>
+                <td className="px-4 py-2">{item.transactionId}</td>
+                <td className="px-4 py-2">
+                  {new Date(item.paymentDate).toLocaleDateString()}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
 
-      {hasNextPage && (
-        <div className="text-center mt-4">
-          <button
-            onClick={() => fetchNextPage()}
-            className="btn btn-primary"
-          >
-            Load More
-          </button>
-        </div>
-      )}
+      {/* Pagination */}
+      <div className="flex justify-end gap-2 mt-4">
+        <button
+          className="btn btn-sm border dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+          disabled={page <= 1}
+          onClick={() => setPage(page - 1)}
+        >
+          Prev
+        </button>
+        <button
+          className="btn btn-sm border dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+          disabled={page >= data.totalPages}
+          onClick={() => setPage(page + 1)}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };

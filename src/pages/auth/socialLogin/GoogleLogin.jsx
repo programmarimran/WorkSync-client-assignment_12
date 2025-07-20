@@ -55,6 +55,7 @@ const GoogleLogin = () => {
         } else {
           // Role ase: direct home e pathai
           navigate("/");
+          setLoading(false)
         }
       }
     } catch (error) {

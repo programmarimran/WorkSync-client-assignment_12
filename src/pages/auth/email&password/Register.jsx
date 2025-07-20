@@ -153,7 +153,7 @@ const Register = () => {
       <div className="card mx-auto bg-base-100 border border-gray-200 w-full shrink-0 shadow-2xl">
         <form onSubmit={handleSubmit(handleCreateUser)} className="card-body">
           <h1 className="text-3xl text-center font-bold">SignUp now!</h1>
-          <div className="md:flex flex-row-reverse">
+          <div className="flex flex-col-reverse md:flex-row-reverse">
             <div className="flex-1 flex flex-col justify-center items-center">
               <div className="text-center border border-[#2F80ED] rounded-2xl p-4 m-4 bg-[#2F80ED10]">
                 <h1 className="text-[#2F80ED]"> Already have an account?</h1>
@@ -209,9 +209,9 @@ const Register = () => {
                   {...register("role", { required: true })}
                   className="input bg-[#2F80ED20] w-full"
                 >
-                  <option value="">Select Role</option>
-                  <option value="Employee">Employee</option>
-                  <option value="HR">HR</option>
+                  <option className="dark:text-black" value="">Select Role</option>
+                  <option className="dark:text-black" value="Employee">Employee</option>
+                  <option className="dark:text-black" value="HR">HR</option>
                 </select>
                 {errors.role && (
                   <p className="text-error my-3 text-sm">Role is required</p>
@@ -242,28 +242,28 @@ const Register = () => {
                 />
 
                 <label className="label">Password</label>
-                <div className="relative">
+                <div className="relative bg-[#2F80ED20]">
                   <input
                     {...register("password", { required: true })}
                     type={show ? "text" : "password"}
-                    className="input w-full pr-16"
+                    className="input w-full pr-16 bg-[#2F80ED20]"
                     placeholder="Password"
                   />
                   <button
                     onClick={() => setShow(!show)}
                     type="button"
-                    className="absolute inset-y-0 right-0 flex items-center px-4 z-10"
+                    className="absolute dark:bg-[#313036f8] inset-y-0 right-0 flex items-center px-4 z-10"
                   >
                     {show ? (
-                      <MdOutlineRemoveRedEye size={24} />
+                      <MdOutlineRemoveRedEye size={30} />
                     ) : (
-                      <IoMdEyeOff size={24} />
+                      <IoMdEyeOff size={30} />
                     )}
                   </button>
                 </div>
 
                 <p className="text-error my-3 text-sm">{passwordError}</p>
-                <button className="btn bg-[#2F80ED80] mt-4">SignUp</button>
+                <button className="btn border-none bg-[#2F80ED80] mt-4">SignUp</button>
               </fieldset>
             </div>
           </div>
