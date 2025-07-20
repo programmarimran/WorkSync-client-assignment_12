@@ -19,9 +19,11 @@ const HomeLayout = () => {
           <Navbar></Navbar>
         </div>
       </div>
-      <main className="  w-11/12 mx-auto min-h-[calc(100vh-100px)]">
-        <Outlet></Outlet>
-      </main>
+      <div className="bg-gray-100 dark:bg-black/10">
+        <main className="  w-11/12 mx-auto min-h-[calc(100vh-100px)]">
+          <Outlet></Outlet>
+        </main>
+      </div>
       <div className="">
         <Footer></Footer>
       </div>
