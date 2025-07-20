@@ -5,11 +5,23 @@ import useAuth from "../../hooks/useAuth";
 import Logo from "../logo/Logo";
 import ThemeToggle from "../themeToggle/ThemeToggle";
 import { FaEdit } from "react-icons/fa";
-
+import useUserRole from "../../hooks/useUserRole";
+import {
+  MdHome,
+  MdDashboard,
+  MdWork,
+  MdPayment,
+  MdPeople,
+  MdTrendingUp,
+  MdOutlineManageAccounts,
+  MdOutlineAttachMoney,
+  MdContactMail,
+} from "react-icons/md";
 const DashboardHamburgerDrawer = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const drawerRef = useRef();
   const { user, logoutUser } = useAuth();
+  const { role } = useUserRole();
 
   const handleLogout = () => {
     Swal.fire({
@@ -120,63 +132,142 @@ const DashboardHamburgerDrawer = () => {
 
               {/* Nav Links */}
               <ul className="menu p-4 z-10 space-y-2">
+                {/* Common Links */}
                 <li>
                   <NavLink
-                    to="/"
                     onClick={() => setMobileMenuOpen(false)}
+                    to="/"
                     className={({ isActive }) =>
                       isActive ? "active font-bold" : ""
                     }
                   >
+                    <MdHome className="inline-block mr-2" />
                     Home
                   </NavLink>
                 </li>
                 <li>
                   <NavLink
+                    onClick={() => setMobileMenuOpen(false)}
                     to="/dashboard"
-                    onClick={() => setMobileMenuOpen(false)}
                     className={({ isActive }) =>
                       isActive ? "active font-bold" : ""
                     }
                   >
-                    Dashboard Home
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/dashboard/work-sheet"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={({ isActive }) =>
-                      isActive ? "active font-bold" : ""
-                    }
-                  >
-                    Work Sheet
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/dashboard/payment-history"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={({ isActive }) =>
-                      isActive ? "active font-bold" : ""
-                    }
-                  >
-                    Payment History
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/dashboard/employee-list"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={({ isActive }) =>
-                      isActive ? "active font-bold" : ""
-                    }
-                  >
-                    EmployeeListPage
+                    <MdDashboard className="inline-block mr-2" />
+                    Dashboard Overview
                   </NavLink>
                 </li>
 
-                {/* Add more links here */}
+                {/* Employee Panel */}
+                {role === "Employee" && (
+                  <>
+                    <p className="text-xs uppercase font-semibold text-gray-400 ml-2 mt-4">
+                      👷 Employee Panel
+                    </p>
+                    <li>
+                      <NavLink
+                        onClick={() => setMobileMenuOpen(false)}
+                        to="/dashboard/work-sheet"
+                        className={({ isActive }) =>
+                          isActive ? "active font-bold" : ""
+                        }
+                      >
+                        <MdWork className="inline-block mr-2" />
+                        Daily Work Sheet
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        onClick={() => setMobileMenuOpen(false)}
+                        to="/dashboard/payment-history"
+                        className={({ isActive }) =>
+                          isActive ? "active font-bold" : ""
+                        }
+                      >
+                        <MdPayment className="inline-block mr-2" />
+                        Payment Records
+                      </NavLink>
+                    </li>
+                  </>
+                )}
+
+                {/* HR Panel */}
+                {role === "HR" && (
+                  <>
+                    <p className="text-xs uppercase font-semibold text-gray-400 ml-2 mt-4">
+                      🧑‍💼 HR Panel
+                    </p>
+                    <li>
+                      <NavLink
+                        onClick={() => setMobileMenuOpen(false)}
+                        to="/dashboard/employee-list"
+                        className={({ isActive }) =>
+                          isActive ? "active font-bold" : ""
+                        }
+                      >
+                        <MdPeople className="inline-block mr-2" />
+                        Verified Employees
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        onClick={() => setMobileMenuOpen(false)}
+                        to="/dashboard/progress"
+                        className={({ isActive }) =>
+                          isActive ? "active font-bold" : ""
+                        }
+                      >
+                        <MdTrendingUp className="inline-block mr-2" />
+                        Employee Progress
+                      </NavLink>
+                    </li>
+                  </>
+                )}
+
+                {/* Admin Panel */}
+                {role === "admin" && (
+                  <>
+                    <p className="text-xs uppercase font-semibold text-gray-400 ml-2 mt-4">
+                      👑 Admin Panel
+                    </p>
+                    <li>
+                      <NavLink
+                        onClick={() => setMobileMenuOpen(false)}
+                        to="/dashboard/all-employee-list"
+                        className={({ isActive }) =>
+                          isActive ? "active font-bold" : ""
+                        }
+                      >
+                        <MdOutlineManageAccounts className="inline-block mr-2" />
+                        All Employees
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        onClick={() => setMobileMenuOpen(false)}
+                        to="/dashboard/admin-payroll"
+                        className={({ isActive }) =>
+                          isActive ? "active font-bold" : ""
+                        }
+                      >
+                        <MdOutlineAttachMoney className="inline-block mr-2" />
+                        Payroll Settings
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        onClick={() => setMobileMenuOpen(false)}
+                        to="/dashboard/contac-message"
+                        className={({ isActive }) =>
+                          isActive ? "active font-bold" : ""
+                        }
+                      >
+                        <MdContactMail className="inline-block mr-2" />
+                        Contact Messages
+                      </NavLink>
+                    </li>
+                  </>
+                )}
               </ul>
             </div>
 

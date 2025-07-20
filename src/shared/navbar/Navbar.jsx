@@ -1,5 +1,5 @@
 import { NavLink } from "react-router";
-import { FaArrowRightFromBracket } from "react-icons/fa6";
+// import { FaArrowRightFromBracket } from "react-icons/fa6";
 // import Hambarger from "../hambarger/Hambarger";
 import logo from "../../assets/logo.png";
 import ThemeToggle from "../themeToggle/ThemeToggle";
@@ -7,8 +7,15 @@ import NavProfile from "../navProfile/NavProfile";
 import NavHamburgerDrawer from "./NavHamburgerDrawer";
 import useAuth from "../../hooks/useAuth";
 import { Home, LayoutDashboard, ListTodo, MessageCircle } from "lucide-react";
+import useScrollLevel from "../../hooks/usescrollLevel";
 
 const Navbar = () => {
+    const level = useScrollLevel([70, 400]);
+  const textClasses = [
+    "text-black dark:text-white",
+    "text-white   ",
+    "text-black  dark:text-white ",
+  ];
   const { user, logoutUser } = useAuth();
   // console.log(user);
 
@@ -50,7 +57,6 @@ const Navbar = () => {
           <MessageCircle size={18} /> Contact Us
         </NavLink>
       </li>
-
     </>
   );
   return (
@@ -60,12 +66,12 @@ const Navbar = () => {
           {/* <Hambarger></Hambarger> */}
           <NavHamburgerDrawer></NavHamburgerDrawer>
           <div>
-             <div className=" flex md:gap-1 items-center">
-                    <img className=" w-18" src={logo} alt="" />
-                    <h2 className=" hidden md:flex font-poppins -ml-2 text-lg md:text-3xl font-bold">
-                      Work<span className="text-primary text-4xl">S</span>ync
-                    </h2>
-                  </div>
+            <div className=" flex md:gap-1 items-center">
+              <img className=" w-18" src={logo} alt="" />
+              <h2 className= {`hidden ${textClasses[level]}   md:flex font-poppins -ml-2 text-lg md:text-3xl font-bold`}>
+                Work<span className="text-primary text-4xl">S</span>ync
+              </h2>
+            </div>
           </div>
         </div>
       </div>

@@ -1,30 +1,10 @@
-import {
-  FaUserPlus,
-  FaWallet,
-  FaTasks, // ✅ valid alternative
-  FaCalendarMinus,
-  FaCommentDots,
-  FaStarHalfAlt,
-  FaClock,
-  FaChartBar,
-  FaFileAlt,
-  FaMapMarkerAlt,
-} from "react-icons/fa";
+import { useState } from "react";
+import iconMap from "./iconMap";
 
 const ServicesSection = ({ services }) => {
-  const iconMap = {
-    "user-plus": <FaUserPlus className="text-primary hover:text-red-600 text-3xl" />,
-    wallet: <FaWallet className="text-primary text-3xl" />,
-    "list-check": <FaTasks className="text-primary text-3xl" />, 
-    "calendar-minus": <FaCalendarMinus className="text-primary text-3xl" />,
-    "message-circle": <FaCommentDots className="text-primary text-3xl" />,
-    "star-half": <FaStarHalfAlt className="text-primary text-3xl" />,
-    clock: <FaClock className="text-primary text-3xl" />,
-    "bar-chart-2": <FaChartBar className="text-primary text-3xl" />,
-    "file-text": <FaFileAlt className="text-primary text-3xl" />,
-    "map-pin": <FaMapMarkerAlt className="text-primary text-3xl" />,
-  };
+    const [showAll, setShowAll] = useState(false);
 
+  const displayedServices = showAll ? services : services.slice(0, 8);
   return (
     <section className="py-10 px-4 md:px-10 ">
       <div className="max-w-7xl mx-auto">
@@ -36,11 +16,11 @@ const ServicesSection = ({ services }) => {
           efficiently.
         </p>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {services?.map((service) => (
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {displayedServices?.map((service) => (
             <div
               key={service._id}
-              className="card bg-base-200 dark:bg-base-300 hover:bg-base-300 dark:hover:bg-primary shadow-md hover:shadow-xl transition-all duration-300 border border-base-300"
+              className="card bg-base-200 dark:bg-base-300 hover:bg-primary/40 shadow-md hover:shadow-xl transition-all duration-300 border border-base-300"
             >
               <div className="card-body items-center text-center">
                 <div className="mb-3">
@@ -58,6 +38,16 @@ const ServicesSection = ({ services }) => {
             </div>
           ))}
         </div>
+          {services.length > 8 && (
+          <div className="text-center mt-10">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="btn btn-outline btn-primary"
+            >
+              {showAll ? "See Less" : "See All Services"}
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
