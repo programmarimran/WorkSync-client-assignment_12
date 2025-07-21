@@ -50,6 +50,10 @@ body {
   z-index: 50 ;
 }
 
+/* smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
 
 
 

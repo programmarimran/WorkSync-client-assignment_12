@@ -80,8 +80,9 @@ const UpdateProfile = () => {
           last_log_in: new Date().toISOString(),
           photo: uploadedImage,
         };
+        // eslint-disable-next-line no-unused-vars
         const res = axiosinstance.put("/users/profile", userInfoDB);
-        console.log(res.data);
+        // console.log(res.data);
         setLoading(false);
       })
       .catch((error) => {

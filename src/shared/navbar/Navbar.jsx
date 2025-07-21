@@ -6,11 +6,16 @@ import ThemeToggle from "../themeToggle/ThemeToggle";
 import NavProfile from "../navProfile/NavProfile";
 import NavHamburgerDrawer from "./NavHamburgerDrawer";
 import useAuth from "../../hooks/useAuth";
-import { Home, LayoutDashboard, ListTodo, MessageCircle } from "lucide-react";
+import { LiaServicestack } from "react-icons/lia";
+import { Home, LayoutDashboard, MessageCircle } from "lucide-react";
 import useScrollLevel from "../../hooks/usescrollLevel";
+import useSmoothScroll from "../../hooks/useSmoothScroll";
+import { FaQuestion } from "react-icons/fa";
+import { MdRateReview } from "react-icons/md";
+import { FcAbout } from "react-icons/fc";
 
 const Navbar = () => {
-    const level = useScrollLevel([70, 400]);
+  const level = useScrollLevel([70, 400]);
   const textClasses = [
     "text-black dark:text-white",
     "text-white   ",
@@ -18,6 +23,7 @@ const Navbar = () => {
   ];
   const { user, logoutUser } = useAuth();
   // console.log(user);
+  const { scrollToSection } = useSmoothScroll();
 
   const links = (
     <>
@@ -57,6 +63,42 @@ const Navbar = () => {
           <MessageCircle size={18} /> Contact Us
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/about"
+          className={({ isActive }) =>
+            isActive
+              ? "bg-primary text-white  flex items-center gap-1"
+              : "flex hover:bg-primary/90 hover:text-white  items-center gap-1"
+          }
+        >
+          <FcAbout size={18} /> About
+        </NavLink>
+      </li>
+      <li>
+        <button
+          onClick={() => scrollToSection("services")}
+          className="flex items-center gap-1 hover:text-primary"
+        >
+          <LiaServicestack size={16} /> Services
+        </button>
+      </li>
+      <li>
+        <button
+          onClick={() => scrollToSection("faq")}
+          className="flex items-center gap-1 hover:text-primary"
+        >
+          <FaQuestion size={16} /> FAQ
+        </button>
+      </li>
+      <li>
+        <button
+          onClick={() => scrollToSection("review")}
+          className="flex items-center gap-1 hover:text-primary"
+        >
+          <MdRateReview size={16} /> Review
+        </button>
+      </li>
     </>
   );
   return (
@@ -68,7 +110,9 @@ const Navbar = () => {
           <div>
             <div className=" flex md:gap-1 items-center">
               <img className=" w-12" src={logo} alt="" />
-              <h2 className= {`hidden ${textClasses[level]}   md:flex font-poppins -ml-1 text-lg md:text-3xl font-bold`}>
+              <h2
+                className={`hidden ${textClasses[level]}   md:flex font-poppins -ml-1 text-lg md:text-3xl font-bold`}
+              >
                 Work<span className="text-primary text-4xl">S</span>ync
               </h2>
             </div>

@@ -1,8 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router";
+import useScrollToSection from "../../hooks/useSmoothScroll";
+import { Home, LayoutDashboard, MessageCircle } from "lucide-react";
+import { FcAbout } from "react-icons/fc";
+import { LiaServicestack } from "react-icons/lia";
+import { FaQuestion } from "react-icons/fa";
+import { MdRateReview } from "react-icons/md";
 const NavHamburgerDrawer = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const drawerRef = useRef();
+  const { scrollToSection } = useScrollToSection();
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -57,35 +64,85 @@ const NavHamburgerDrawer = () => {
             </button>
 
             {/* Nav NavLinks */}
-            <NavLink
-              to="/"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-4 py-2 rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
-            >
-              Home
-            </NavLink>
-            <NavLink
-              to="/about"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-4 py-2 rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
-            >
-              About
-            </NavLink>
-            <NavLink
-              to="/contact-us"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-4 py-2 rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
-            >
-              Contact Us
-            </NavLink>
-              <NavLink
-                to={"/dashboard"}
-                onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-2 rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
-              >
-                Dashboard
-              </NavLink>
-           
+            <ul className="menu menu-horizontal gap-2">
+              {" "}
+              <li>
+                <NavLink 
+                 onClick={() => setMobileMenuOpen(false)}
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-primary text-white  flex items-center gap-1"
+                      : "flex hover:bg-primary/90 hover:text-white items-center gap-1"
+                  }
+                >
+                  <Home size={18} /> Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink 
+                 onClick={() => setMobileMenuOpen(false)}
+                  to="/dashboard"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-primary text-white  flex items-center gap-1"
+                      : "flex hover:bg-primary/90 hover:text-white items-center gap-1"
+                  }
+                >
+                  <LayoutDashboard size={18} /> Dashboard
+                </NavLink>
+              </li>
+              <li>
+                <NavLink 
+                 onClick={() => setMobileMenuOpen(false)}
+                  to="/contact-us"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-primary text-white  flex items-center gap-1"
+                      : "flex hover:bg-primary/90 hover:text-white  items-center gap-1"
+                  }
+                >
+                  <MessageCircle size={18} /> Contact Us
+                </NavLink>
+              </li>
+              <li>
+                <NavLink 
+                 onClick={() => setMobileMenuOpen(false)}
+                  to="/about"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-primary text-white  flex items-center gap-1"
+                      : "flex hover:bg-primary/90 hover:text-white  items-center gap-1"
+                  }
+                >
+                  <FcAbout size={18} /> About
+                </NavLink>
+              </li>
+              <li onClick={() => setMobileMenuOpen(false)}>
+                <button
+                  onClick={() => scrollToSection("services")}
+                  className="flex items-center gap-1 hover:text-primary"
+                >
+                  <LiaServicestack size={16} /> Services
+                </button>
+              </li>
+              <li onClick={() => setMobileMenuOpen(false)}>
+                <button
+                  onClick={() => scrollToSection("faq")}
+                  className="flex items-center gap-1 hover:text-primary"
+                >
+                  <FaQuestion size={16} /> FAQ
+                </button>
+              </li>
+              <li onClick={() => setMobileMenuOpen(false)}>
+                <button
+                  onClick={() => scrollToSection("review")}
+                  className="flex items-center gap-1 hover:text-primary"
+                >
+                  <MdRateReview size={16} /> Review
+                </button>
+              </li>
+            </ul>
           </div>
         </div>
       )}

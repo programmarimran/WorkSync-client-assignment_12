@@ -31,11 +31,11 @@ const SubHome = ({ sectionRef }) => {
 
   return (
     <div>
-      <section ref={sectionRef}>
+      <section id="services" ref={sectionRef}>
         <ServicesSection services={services} />
       </section>
 
-      <section>
+      <section id="review">
         <CustomerReviewsSection testimonials={testimonials} />
       </section>
       <section>
@@ -45,7 +45,7 @@ const SubHome = ({ sectionRef }) => {
         <BeLocation />
       </section>
 
-      <section>
+      <section id="faq">
         <FaqSection faqs={faqs} />
       </section>
     </div>

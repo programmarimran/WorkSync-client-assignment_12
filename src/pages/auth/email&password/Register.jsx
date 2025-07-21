@@ -114,8 +114,9 @@ const Register = () => {
               last_log_in: new Date().toISOString(),
               photo:uploadedImage
             };
+            // eslint-disable-next-line no-unused-vars
             axiosinstance.post(`/users`, userInfoDB).then((res) => {
-              console.log(res.data);
+              // console.log(res.data);
             });
             navigate(`${from || "/"}`);
             

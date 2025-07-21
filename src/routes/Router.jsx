@@ -24,6 +24,7 @@ import AdminPayrollPage from "../pages/dashboard/admin/payrollPage/AdminPayrollP
 import ContactUs from "../pages/contact/ContactUs";
 import AdminContactMessages from "../pages/dashboard/admin/contacmessage/AdminContactMessages";
 import EmployeeAttendance from "../pages/dashboard/dashboardHome/employeeDashboard/EmployeeAttendance";
+import About from "../pages/about/About";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "contact-us",
         Component: ContactUs,
+      },
+      {
+        path: "about",
+        Component: About,
       },
     ],
   },
