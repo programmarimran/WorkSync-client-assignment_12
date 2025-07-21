@@ -15,10 +15,13 @@
 
 ## 🖼️ Preview
 
-![Screenshot](https://i.ibb.co/YFhWjnTC/Screenshot-2025-07-22-003400.png)  
-![Screenshot](https://i.ibb.co/wZyMVgDb/Screenshot-2025-07-22-003509.png)  
-![Screenshot](https://i.ibb.co/gk7x61k/Screenshot-2025-07-22-003628.png)  
-![Screenshot](https://i.ibb.co/MxTqzX1t/Screenshot-2025-07-22-003801.png)
+### 🔹 Main Dashboard Preview
+![Main Dashboard](https://i.ibb.co/YFhWjnTC/Screenshot-2025-07-22-003400.png)
+
+### 🔗 Other Screenshots (click to view):
+- [📷 Employee Table View](https://i.ibb.co/wZyMVgDb/Screenshot-2025-07-22-003509.png)
+- [📷 Payroll History Page](https://i.ibb.co/gk7x61k/Screenshot-2025-07-22-003628.png)
+- [📷 Payment Analytics Graph](https://i.ibb.co/MxTqzX1t/Screenshot-2025-07-22-003801.png)
 
 ---
 
