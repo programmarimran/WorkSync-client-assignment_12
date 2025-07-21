@@ -1,6 +1,7 @@
 
 import useAuth from "../../../../hooks/useAuth";
 import useUserRole from "../../../../hooks/useUserRole";
+import AdminDashboard from "../adminDashboard/AdminDashboardHOme";
 import EmployeeDashboard from "../employeeDashboard/EmployeeDashboard";
 import HrDashboardHome from "../hrDashboardHome/HrDashboardHome";
 
@@ -21,9 +22,9 @@ const DashboardHome = () => {
   else if (role === "HR") {
     return <HrDashboardHome />;
   } 
-  // else if (role === "admin") {
-  //   return <AdminDashboard />;
-  // } 
+  else if (role === "admin") {
+    return <AdminDashboard />;
+  } 
   else
      {
     return (

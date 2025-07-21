@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { Link } from "react-router";
 import { GiClick } from "react-icons/gi";
+import { FileText } from "lucide-react";
 const HrDashboardHome = () => {
   const axiosSecure = useAxiosSecure();
   const { data, isLoading } = useQuery({
@@ -37,6 +38,19 @@ const HrDashboardHome = () => {
             <GiClick className=" text-primary" size={30} />
           </p>
         </div>
+      </Link>
+      <Link
+        to="/dashboard/profile-update"
+        className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow hover:shadow-md transition group"
+      >
+        <FileText
+          className="text-blue-500 mb-4 group-hover:scale-110 transition"
+          size={36}
+        />
+        <h3 className="font-semibold text-lg mb-1">My Profile</h3>
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          Manage your personal info & updates.
+        </p>
       </Link>
       <div className="bg-white dark:bg-slate-800 shadow-md p-4 rounded-xl col-span-2">
         <h2 className="text-lg font-semibold mb-2">Recent Activities</h2>
