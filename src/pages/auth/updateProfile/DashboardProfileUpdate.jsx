@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 import useAxiosInstance from "../../../hooks/useAxiosInstance";
 import Swal from "sweetalert2";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import Logo from "../../../shared/logo/Logo";
+import ThemeToggle from "../../../shared/themeToggle/ThemeToggle";
 
 const DashboardProfileUpdate = () => {
   const axiosinstance = useAxiosInstance();
@@ -101,6 +103,29 @@ const DashboardProfileUpdate = () => {
   return (
     <div className="py-12">
       <div className="card mx-auto bg-base-100 border border-gray-200 w-full shadow-2xl">
+        <div className="sticky top-0 z-10  bg-base-100">
+          <div className=" flex items-center justify-between px-4 mt-4">
+            <Logo />
+            <button className=" btn btn-primary">Update Password</button>
+          </div>
+          {/* User Info */}
+          <div className="mb-4 text-center">
+            {user?.photoURL && (
+              <img
+                src={user.photoURL}
+                alt="User"
+                className="w-16 h-16 mx-auto rounded-full border-2 border-primary"
+              />
+            )}
+
+            <h2 className="text-lg mx-5 font-semibold mt-2">
+              {user?.displayName || "User Name"}
+            </h2>
+
+            <p className="text-sm text-gray-500">{user?.email}</p>
+          </div>
+          <div className="divider"></div>
+        </div>
         <form onSubmit={handleSubmit(onFormSubmit)} className="card-body">
           <h1 className="text-3xl text-center font-bold mb-4">
             Update Your Profile

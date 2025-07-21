@@ -23,6 +23,7 @@ import AdminRoute from "./AdminRoute";
 import AdminPayrollPage from "../pages/dashboard/admin/payrollPage/AdminPayrollPage";
 import ContactUs from "../pages/contact/ContactUs";
 import AdminContactMessages from "../pages/dashboard/admin/contacmessage/AdminContactMessages";
+import EmployeeAttendance from "../pages/dashboard/dashboardHome/employeeDashboard/EmployeeAttendance";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -93,6 +94,14 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "employee-attendence",
+        element: (
+          <EmployeeRoute>
+            <EmployeeAttendance />
+          </EmployeeRoute>
+        ),
+      },
+      {
         path: "employee-list",
         element: (
           <HrRoute>
@@ -133,10 +142,13 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path:"contac-message",
-        element:<AdminRoute><AdminContactMessages/></AdminRoute>
-      }
-    
+        path: "contac-message",
+        element: (
+          <AdminRoute>
+            <AdminContactMessages />
+          </AdminRoute>
+        ),
+      },
     ],
   },
   {
