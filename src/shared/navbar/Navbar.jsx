@@ -75,7 +75,7 @@ const Navbar = () => {
           <FcAbout size={18} /> About
         </NavLink>
       </li>
-      <li>
+      <li className=" hidden xl:block">
         <button
           onClick={() => scrollToSection("services")}
           className="flex items-center gap-1 hover:text-primary"
@@ -83,7 +83,7 @@ const Navbar = () => {
           <LiaServicestack size={16} /> Services
         </button>
       </li>
-      <li>
+      <li className=" hidden xl:block">
         <button
           onClick={() => scrollToSection("faq")}
           className="flex items-center gap-1 hover:text-primary"
@@ -91,7 +91,7 @@ const Navbar = () => {
           <FaQuestion size={16} /> FAQ
         </button>
       </li>
-      <li>
+      <li className=" hidden xl:block">
         <button
           onClick={() => scrollToSection("review")}
           className="flex items-center gap-1 hover:text-primary"
@@ -120,7 +120,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal gap-2">{links}</ul>
+        <ul className="menu menu-horizontal gap-1">{links}</ul>
       </div>
       <div className="navbar-end gap-2">
         <ThemeToggle></ThemeToggle>
