@@ -1,8 +1,15 @@
 // import { FaCircleUser } from "react-icons/fa6";
 import { Link } from "react-router";
+import useScrollLevel from "../../hooks/usescrollLevel";
 
 const NavProfile = ({ user, logoutUser }) => {
   // const user=true
+    const level = useScrollLevel([70, 400]);
+    const textClasses = [
+      "text-primary border hover:bg-primary hover:text-white  border-primary",
+      "text-primary border hover:bg-primary hover:text-white  border-primary",
+      "border-white dark:border-white text-white hover:bg-primary hover:text-white"
+    ];
   const handleLogout = () => {
     logoutUser();
   };
@@ -57,7 +64,7 @@ const NavProfile = ({ user, logoutUser }) => {
         <div className=" flex items-center gap-2">
         <div className=" hidden md:flex">
             <Link to={"/register"}>
-            <button className=" btn border-secondary dark:border-white dark:text-white hover:bg-primary hover:text-white text-secondary btn-outline">
+            <button className= {`${textClasses[level]} btn btn-outline`}>
               Register
             </button>
           </Link>

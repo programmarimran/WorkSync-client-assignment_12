@@ -19,7 +19,13 @@ const SubHome = ({ sectionRef }) => {
   });
 
   if (isLoading)
-    return <div className="text-center mt-10">Loading homepage...</div>;
+    return (
+      <div className=" flex justify-center items-center mt-10">
+        <span className="loading loading-bars loading-md"></span>
+        <span className="loading loading-bars loading-lg"></span>
+        <span className="loading loading-bars loading-xl"></span>
+      </div>
+    );
   if (error)
     return (
       <div className="text-center mt-10 text-red-500">
@@ -31,21 +37,21 @@ const SubHome = ({ sectionRef }) => {
 
   return (
     <div>
-      <section id="services" ref={sectionRef}>
+      <section className="mt-12 mt:my-20 " id="services" ref={sectionRef}>
         <ServicesSection services={services} />
       </section>
-
-      <section id="review">
-        <CustomerReviewsSection testimonials={testimonials} />
-      </section>
-      <section>
+      <section className="mt-12 mt:my-20 ">
         <TeamSection teamMembers={teamMembers} />
       </section>
-      <section>
+      <section className="mt-12 mt:my-20 " id="review">
+        <CustomerReviewsSection testimonials={testimonials} />
+      </section>
+
+      <section className="mt-12 mt:my-20 ">
         <BeLocation />
       </section>
 
-      <section id="faq">
+      <section className="mt-12 mt:my-20 " id="faq">
         <FaqSection faqs={faqs} />
       </section>
     </div>

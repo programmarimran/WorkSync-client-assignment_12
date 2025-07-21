@@ -7,7 +7,7 @@ const BeLocation = () => {
   return (
     <div className="py-12 rounded-xl bg-primary/90 dark:bg-primary/80">
       <div
-        className=" mt-0 grid md:grid-cols-2 gap-10 items-center p-6 md:p-16 rounded-xl shadow-md"
+  
         style={{
           backgroundImage: `url(${location})`,
           backgroundSize: "cover",
@@ -15,7 +15,8 @@ const BeLocation = () => {
           backgroundRepeat: "no-repeat",
         }}
       >
-        {/* Image Section */}
+      <div className=" max-w-7xl mx-auto mt-0 grid md:grid-cols-2 gap-10 items-center justify-between p-6 md:p-16 rounded-xl shadow-md">
+          {/* Image Section */}
         <div>
           <img
             src={bgImage}
@@ -45,6 +46,7 @@ const BeLocation = () => {
             </button></Link>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

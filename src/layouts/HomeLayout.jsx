@@ -10,7 +10,8 @@ const HomeLayout = () => {
   const textClasses = [
     "text-black dark:text-white",
     "text-primary dark:text-white backdrop-blur-sm ",
-    "text-black  dark:text-white bg-gray-100 dark:bg-gray-600 shadow",
+    // "text-black  dark:text-white bg-gray-100 dark:bg-gray-600 shadow",
+    "text-white  dark:text-white bg-neutral  shadow",
   ];
   return (
     <>

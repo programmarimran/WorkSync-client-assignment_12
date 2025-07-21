@@ -19,7 +19,7 @@ const Navbar = () => {
   const textClasses = [
     "text-black dark:text-white",
     "text-white   ",
-    "text-black  dark:text-white ",
+    "text-white ",
   ];
   const { user, logoutUser } = useAuth();
   // console.log(user);
@@ -113,7 +113,7 @@ const Navbar = () => {
               <h2
                 className={`hidden ${textClasses[level]}   md:flex font-poppins -ml-1 text-lg md:text-3xl font-bold`}
               >
-                Work<span className="text-primary text-4xl">S</span>ync
+                Work<span className="text-[#00ADB5] dark:text-primary text-4xl">S</span>ync
               </h2>
             </div>
           </div>
