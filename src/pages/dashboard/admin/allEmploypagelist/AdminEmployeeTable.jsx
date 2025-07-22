@@ -56,7 +56,7 @@ const AdminEmployeeTable = ({ tebLevel }) => {
 
   return (
     <div className="overflow-x-auto">
-      <table className="table table-zebra w-full">
+      <table className="table  w-full">
         <thead>
           <tr className=" bg-primary/20 ">
             <th>Name</th>
@@ -77,7 +77,7 @@ const AdminEmployeeTable = ({ tebLevel }) => {
                 {emp.role === "Employee" && !emp.isFired ? (
                   <button
                     onClick={() => makeHrMutation.mutate(emp._id)}
-                    className="btn btn-xs"
+                    className="btn btn-xs btn-info dark:btn-primary"
                   >
                     Make HR
                   </button>
@@ -92,7 +92,7 @@ const AdminEmployeeTable = ({ tebLevel }) => {
                       setSelectedEmployee(emp);
                       setSalaryModalOpen(true);
                     }}
-                    className="btn btn-xs btn-info"
+                    className="btn btn-xs dark:btn-info btn-primary"
                   >
                     Adjust
                   </button>
