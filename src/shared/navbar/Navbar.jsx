@@ -113,7 +113,15 @@ const Navbar = () => {
               <h2
                 className={`hidden ${textClasses[level]}   md:flex font-poppins -ml-1 text-lg md:text-3xl font-bold`}
               >
-                Work<span className="text-[#00ADB5] dark:text-primary text-4xl">S</span>ync
+                Work
+                <span className="text-[#00ADB5] dark:text-primary text-4xl">
+                  S
+                </span>
+                ync
+              </h2>
+              <h2 className=" md:hidden font-poppins text-lg -ml-2 md:text-3xl font-bold">
+                Work<span className="text-primary text-xl md:text-4xl">S</span>
+                ync
               </h2>
             </div>
           </div>
