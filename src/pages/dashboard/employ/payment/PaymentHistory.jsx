@@ -28,10 +28,10 @@ const PaymentHistory = () => {
         Payment History
       </h2>
 
-      <div className="overflow-x-auto rounded-md border dark:border-gray-700">
+      <div className="overflow-x-auto rounded-md ">
         <table className="min-w-full text-sm text-left text-gray-700 dark:text-gray-300">
           <thead className="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200">
-            <tr>
+            <tr className=" bg-primary/20 ">
               <th className="px-4 py-3">Month</th>
               <th className="px-4 py-3">Year</th>
               <th className="px-4 py-3">Amount</th>

@@ -108,7 +108,7 @@ const DashboardLayout = () => {
             </div>
 
             {/* Nav Links */}
-            <ul className="menu p-4 z-0 space-y-2">
+            <ul className="menu p-4 z-0 text-black dark:text-white space-y-2">
               {/* Common Links */}
               <li>
                 <NavLink

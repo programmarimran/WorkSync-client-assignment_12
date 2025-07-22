@@ -81,7 +81,7 @@ const EmployeeTable = ({ handlePayClick,handleDetailsClick  }) => {
       <table className="table w-full ">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
+            <tr className=" bg-primary/20 " key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
                 <th key={header.id}>
                   {flexRender(header.column.columnDef.header, header.getContext())}

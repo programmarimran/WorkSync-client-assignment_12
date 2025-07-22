@@ -49,7 +49,7 @@ const TeamSection = ({ teamMembers }) => {
           >
             <div className="flex items-center gap-x-30 ml-24">
               {teamMembers.map((member, index) => (
-                <div
+                <div 
                   key={`rtl-${index}`}
                   className=" w-48 h-full flex flex-col justify-between flex-shrink-0 backdrop-blur-md bg-white/30 dark:bg-white/10 border border-white/20 dark:border-white/10 rounded-2xl shadow-lg p-5 text-center transition-transform duration-500 hover:scale-105 hover:shadow-xl"
                 >

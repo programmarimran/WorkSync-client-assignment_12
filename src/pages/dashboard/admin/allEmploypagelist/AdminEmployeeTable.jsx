@@ -58,7 +58,7 @@ const AdminEmployeeTable = ({ tebLevel }) => {
     <div className="overflow-x-auto">
       <table className="table table-zebra w-full">
         <thead>
-          <tr>
+          <tr className=" bg-primary/20 ">
             <th>Name</th>
             <th>Designation</th>
             <th>Salary</th>

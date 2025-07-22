@@ -18,7 +18,7 @@ const ServicesSection = ({ services }) => {
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {displayedServices?.map((service) => (
-            <div
+            <div  data-aos="zoom-in-down"
               key={service._id}
               className="card bg-base-200 dark:bg-base-300 hover:bg-primary/40 shadow-md hover:shadow-xl transition-all duration-300 border border-base-300"
             >

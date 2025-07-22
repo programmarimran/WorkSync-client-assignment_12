@@ -6,6 +6,7 @@ import { FcAbout } from "react-icons/fc";
 import { LiaServicestack } from "react-icons/lia";
 import { FaQuestion } from "react-icons/fa";
 import { MdRateReview } from "react-icons/md";
+import useScrollLevel from "../../hooks/usescrollLevel";
 const NavHamburgerDrawer = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const drawerRef = useRef();
@@ -25,6 +26,12 @@ const NavHamburgerDrawer = () => {
     };
   }, [mobileMenuOpen]);
 
+  const level = useScrollLevel([60, 400]);
+  const textClasses = [
+    "text-black dark:text-white ",
+    "text-white   ",
+    "text-white ",
+  ];
   return (
     <div className="lg:hidden">
       <button
@@ -33,7 +40,7 @@ const NavHamburgerDrawer = () => {
       >
         {/* Hamburger Icon */}
         <svg
-          className="w-10 h-10 text-gray-700 dark:text-white"
+          className={`w-10 h-10 ${textClasses[level]}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -53,7 +60,7 @@ const NavHamburgerDrawer = () => {
         <div className="fixed inset-0  backdrop-blur-sm z-50">
           <div
             ref={drawerRef}
-            className="fixed top-0 left-0 right-0 bg-white dark:bg-gray-900 shadow-lg p-4 space-y-4 transform transition-transform duration-300 translate-y-0"
+            className="fixed top-0 left-0 right-0 bg-gray-900 text-white shadow-lg p-4 space-y-4 transform transition-transform duration-300 translate-y-0"
           >
             {/* Close Button */}
             <button
@@ -64,7 +71,7 @@ const NavHamburgerDrawer = () => {
             </button>
 
             {/* Nav NavLinks */}
-            <ul className="menu menu-horizontal gap-2">
+            <ul className="menu menu-vertical gap-2">
               {" "}
               <li>
                 <NavLink 

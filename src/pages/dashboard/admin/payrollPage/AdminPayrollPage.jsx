@@ -26,11 +26,11 @@ const AdminPayrollPage = () => {
 
   return (
     <div className="max-w-7xl mx-auto p-4">
-      <h2 className="text-xl font-bold mb-4">Payroll Requests</h2>
+      <h2 className="text-xl font-bold mb-4 ">Payroll Requests</h2>
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>
-            <tr>
+            <tr className=" bg-primary/20 ">
               <th>Name</th>
               <th>Salary</th>
               <th>Month & Year</th>

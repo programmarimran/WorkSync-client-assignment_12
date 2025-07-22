@@ -3,9 +3,9 @@ const ProgressTable = ({ data, isLoading, employeeNames }) => {
 
   return (
     <div className="overflow-x-auto">
-      <table className="table w-full border">
+      <table className="table w-full ">
         <thead>
-          <tr>
+          <tr className=" bg-primary/20 ">
             <th>Employee</th>
             <th>Email</th>
             <th>Month</th>
