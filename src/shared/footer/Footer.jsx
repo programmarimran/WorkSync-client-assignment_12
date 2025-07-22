@@ -9,8 +9,14 @@ import {
 } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import { useRef } from "react";
+import useScrollToSection from "../../hooks/useSmoothScroll";
+import { FcAbout } from "react-icons/fc";
+import { LiaServicestack } from "react-icons/lia";
+import { FaQuestion } from "react-icons/fa6";
+import { MdRateReview } from "react-icons/md";
 
 const Footer = () => {
+  const { scrollToSection } = useScrollToSection();
   const { setFooterEmail } = useAuth();
   const emailRef = useRef();
 
@@ -21,7 +27,7 @@ const Footer = () => {
     });
   };
   const handleEmail = () => {
-    scrollToTop()
+    scrollToTop();
     setFooterEmail(emailRef.current.value);
   };
   return (
@@ -72,13 +78,15 @@ const Footer = () => {
         {/* Explore */}
         <div className=" md:flex flex-col  items-center">
           <h4 className="text-lg font-extrabold  md:-ml-14 mb-2">Links</h4>
-          <ul className="space-y-1">
+          {/* Nav NavLinks */}
+          <ul className="menu menu-vertical gap-2">
+            {" "}
             <li>
               <NavLink
                 to="/"
                 className={({ isActive }) =>
                   isActive
-                    ? " font-bold text-white  flex items-center gap-1"
+                    ? "bg-primary text-white  flex items-center gap-1"
                     : "flex hover:bg-primary/90 hover:text-white items-center gap-1"
                 }
               >
@@ -90,7 +98,7 @@ const Footer = () => {
                 to="/dashboard"
                 className={({ isActive }) =>
                   isActive
-                    ? " font-bold text-white  flex items-center gap-1"
+                    ? "bg-primary text-white  flex items-center gap-1"
                     : "flex hover:bg-primary/90 hover:text-white items-center gap-1"
                 }
               >
@@ -102,12 +110,48 @@ const Footer = () => {
                 to="/contact-us"
                 className={({ isActive }) =>
                   isActive
-                    ? " font-bold text-white  flex items-center gap-1"
+                    ? "bg-primary text-white  flex items-center gap-1"
                     : "flex hover:bg-primary/90 hover:text-white  items-center gap-1"
                 }
               >
                 <MessageCircle size={18} /> Contact Us
               </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  isActive
+                    ? "bg-primary text-white  flex items-center gap-1"
+                    : "flex hover:bg-primary/90 hover:text-white  items-center gap-1"
+                }
+              >
+                <FcAbout size={18} /> About
+              </NavLink>
+            </li>
+            <li>
+              <button
+                onClick={() => scrollToSection("services")}
+                className="flex items-center gap-1 hover:text-primary"
+              >
+                <LiaServicestack size={16} /> Services
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => scrollToSection("faq")}
+                className="flex items-center gap-1 hover:text-primary"
+              >
+                <FaQuestion size={16} /> FAQ
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => scrollToSection("review")}
+                className="flex items-center gap-1 hover:text-primary"
+              >
+                <MdRateReview size={16} /> Review
+              </button>
             </li>
           </ul>
         </div>
