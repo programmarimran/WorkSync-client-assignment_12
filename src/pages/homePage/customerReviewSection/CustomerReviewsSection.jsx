@@ -40,7 +40,7 @@ const CustomerReviewsSection = ({ testimonials }) => {
           const isCenter = idx === currentSlide;
 
           return (
-            <div key={review.idx} className="keen-slider__slide flex justify-center">
+            <div key={idx} className="keen-slider__slide flex justify-center">
               <div
                 className={`transition-all duration-500 w-full max-w-sm md:max-w-xs rounded-xl ${
                   isCenter

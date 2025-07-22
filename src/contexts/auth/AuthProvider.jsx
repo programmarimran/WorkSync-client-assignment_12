@@ -12,13 +12,17 @@ import {
 import auth from "../../firebase/firebase.init";
 import { toast } from "react-toastify";
 const provider = new GoogleAuthProvider();
+let token = null;
+// eslint-disable-next-line react-refresh/only-export-components
+export const getToken = () => token;
+
 const AuthProvider = ({ children }) => {
-  const [footerEmail,setFooterEmail]=useState("")
+  const [footerEmail, setFooterEmail] = useState("");
   const [user, setUser] = useState(null);
   // console.log(user);
   const [loading, setLoading] = useState(true);
   const loginWithGoogle = () => {
-    setLoading(true)
+    setLoading(true);
     return signInWithPopup(auth, provider);
   };
   const createUser = (email, password) => {
@@ -43,6 +47,14 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
+      if (currentUser) {
+        currentUser.getIdToken().then((idToken) => {
+          // console.log(idToken);
+          token = idToken;
+        });
+      } else {
+        token = null;
+      }
     });
 
     return () => {
@@ -62,7 +74,7 @@ const AuthProvider = ({ children }) => {
     user,
     setUser,
     setFooterEmail,
-    footerEmail
+    footerEmail,
   };
   return <AuthContext value={userInfo}>{children}</AuthContext>;
 };
