@@ -2,8 +2,8 @@
 📁 Category: Employee Monitoring & Salary Management  
 🌐 Live Website: [https://worksync-by-imran.web.app/](https://worksync-by-imran.web.app/)
 
-📦 Client Repo: [GitHub - WorkSync Client](https://github.com/Programming-Hero-Web-Course4/b11a12-client-side-programmarimran)  
-🛠️ Server Repo: [GitHub - WorkSync Server](https://github.com/Programming-Hero-Web-Course4/b11a12-server-side-programmarimran)
+📦 Client Repo: [GitHub - WorkSync Client](https://github.com/programmarimran/WorkSync-client-assignment_12)  
+🛠️ Server Repo: [GitHub - WorkSync Server](https://github.com/programmarimran/WorkSync-server-assignment_12)
 
 ---
 
