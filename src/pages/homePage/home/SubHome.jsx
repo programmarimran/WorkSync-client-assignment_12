@@ -8,6 +8,7 @@ import CustomerReviewsSection from "../customerReviewSection/CustomerReviewsSect
 import FaqSection from "../faqSection/FaqSection";
 import BeLocation from "../beLocation/BeLocation";
 import DemoEmployeeCard from "../services/DemoCardHartcode";
+import HiringSection from "../hiringSection/HiringSection";
 
 const SubHome = ({ sectionRef }) => {
   const axiosInstance = useAxiosInstance();
@@ -40,6 +41,9 @@ const SubHome = ({ sectionRef }) => {
     <div>
       <section className="mt-12 mt:my-20 " id="services" ref={sectionRef}>
         <ServicesSection services={services} />
+      </section>
+      <section>
+        <HiringSection/>
       </section>
       <section>
         <DemoEmployeeCard/>

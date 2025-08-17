@@ -25,6 +25,7 @@ import ContactUs from "../pages/contact/ContactUs";
 import AdminContactMessages from "../pages/dashboard/admin/contacmessage/AdminContactMessages";
 import EmployeeAttendance from "../pages/dashboard/dashboardHome/employeeDashboard/EmployeeAttendance";
 import About from "../pages/about/About";
+import JobDetails from "../pages/homePage/hiringSection/JobDetails";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -43,6 +44,11 @@ const router = createBrowserRouter([
         path: "about",
         Component: About,
       },
+      {
+        path:"job-details/:id",
+        errorElement:ErrorPage,
+        Component:JobDetails
+      }
     ],
   },
   {

@@ -40,6 +40,7 @@ export default function DemoEmployeeCard() {
       <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-white">Available Job Openings</h1>
         {/* Responsive Grid Layout for Job Cards */}
+       
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {jobs.map(job => (
             <JobCard key={job.id} job={job} onSeeMore={handleViewDetails} />
@@ -94,6 +95,7 @@ const JobCard = ({ job, onSeeMore }) => {
       <div className="text-sm text-gray-500 dark:text-gray-400 space-y-2">
         <div className="flex items-center">
             <LocationIcon />
+            hteke dfdkfds fd d
             <span>{job.company.location}</span>
         </div>
         <div className="flex items-center">
