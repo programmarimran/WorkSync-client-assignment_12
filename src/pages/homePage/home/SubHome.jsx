@@ -36,6 +36,7 @@ const SubHome = ({ sectionRef }) => {
     );
 
   const { services, testimonials, teamMembers, faqs } = data || {};
+  const teamMembersDouble=[...teamMembers,...teamMembers,...teamMembers,...teamMembers]
 
   return (
     <div>
@@ -47,7 +48,7 @@ const SubHome = ({ sectionRef }) => {
       </section>
     
       <section className="mt-12 mt:my-20 ">
-        <TeamSection teamMembers={teamMembers} />
+        <TeamSection teamMembers={teamMembersDouble} />
       </section>
       <section className="mt-12 mt:my-20 " id="review">
         <CustomerReviewsSection testimonials={testimonials} />

@@ -10,7 +10,9 @@ const Home = () => {
         <Banner scrollToSection={scrollToSection}></Banner>
       </section>
       {/* sub section with API */}
-      <SubHome sectionRef={sectionRef}/>
+   
+        <SubHome sectionRef={sectionRef} />
+ 
     </>
   );
 };
