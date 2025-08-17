@@ -20,7 +20,7 @@ const ServicesSection = ({ services }) => {
           {displayedServices?.map((service) => (
             <div  data-aos="zoom-in-down"
               key={service._id}
-              className="card bg-base-200 dark:bg-base-300 hover:bg-primary/40 shadow-md hover:shadow-xl transition-all duration-300 border border-base-300"
+              className="bg-primary/5 dark:bg-gray-800 shadow-md rounded-lg p-5 border border-gray-200 dark:border-gray-700 flex flex-col transition-all  hover:shadow-lg hover:border-primary/20 hover:scale-100 duration-75 hover:-translate-y-1"
             >
               <div className="card-body items-center text-center">
                 <div className="mb-3">
