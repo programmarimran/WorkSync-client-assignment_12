@@ -10,7 +10,7 @@ import { LiaServicestack } from "react-icons/lia";
 import { Home, LayoutDashboard, MessageCircle } from "lucide-react";
 import useScrollLevel from "../../hooks/usescrollLevel";
 import useSmoothScroll from "../../hooks/useSmoothScroll";
-import { FaQuestion } from "react-icons/fa";
+import { FaJoget, FaQuestion } from "react-icons/fa";
 import { MdRateReview } from "react-icons/md";
 import { FcAbout } from "react-icons/fc";
 
@@ -37,6 +37,18 @@ const Navbar = () => {
           }
         >
           <Home size={18} /> Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/allJob"
+          className={({ isActive }) =>
+            isActive
+              ? "bg-primary text-white  flex items-center gap-1"
+              : "flex hover:bg-primary/90 hover:text-white items-center gap-1"
+          }
+        >
+          <FaJoget size={18} /> All Jobs
         </NavLink>
       </li>
       <li>
@@ -75,14 +87,7 @@ const Navbar = () => {
           <FcAbout size={18} /> About
         </NavLink>
       </li>
-      <li className=" hidden xl:block">
-        <button
-          onClick={() => scrollToSection("services")}
-          className="flex items-center gap-1 hover:text-primary"
-        >
-          <LiaServicestack size={16} /> Services
-        </button>
-      </li>
+     
       <li className=" hidden xl:block">
         <button
           onClick={() => scrollToSection("faq")}

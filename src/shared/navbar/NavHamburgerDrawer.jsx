@@ -4,7 +4,7 @@ import useScrollToSection from "../../hooks/useSmoothScroll";
 import { Home, LayoutDashboard, MessageCircle } from "lucide-react";
 import { FcAbout } from "react-icons/fc";
 import { LiaServicestack } from "react-icons/lia";
-import { FaQuestion } from "react-icons/fa";
+import { FaJoget, FaQuestion } from "react-icons/fa";
 import { MdRateReview } from "react-icons/md";
 import useScrollLevel from "../../hooks/usescrollLevel";
 const NavHamburgerDrawer = () => {
@@ -84,6 +84,19 @@ const NavHamburgerDrawer = () => {
                   }
                 >
                   <Home size={18} /> Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink 
+                 onClick={() => setMobileMenuOpen(false)}
+                  to="/allJob"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-primary text-white  flex items-center gap-1"
+                      : "flex hover:bg-primary/90 hover:text-white items-center gap-1"
+                  }
+                >
+                  <FaJoget size={18} /> All Jobs
                 </NavLink>
               </li>
               <li>
