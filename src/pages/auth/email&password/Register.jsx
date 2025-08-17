@@ -49,7 +49,6 @@ const Register = () => {
       })
       .catch(() => {
         setError("Image upload failed");
-        
       });
   };
 
@@ -112,14 +111,14 @@ const Register = () => {
               uid: result.user.uid,
               created_at: new Date().toISOString(),
               last_log_in: new Date().toISOString(),
-              photo:uploadedImage
+              photo: uploadedImage,
             };
             // eslint-disable-next-line no-unused-vars
             axiosinstance.post(`/users`, userInfoDB).then((res) => {
               // console.log(res.data);
             });
             navigate(`${from || "/"}`);
-            
+
             setUser(result.user);
           })
           .catch((error) => {
@@ -150,26 +149,39 @@ const Register = () => {
   //               loop={true}
   //             />
   return (
-    <div className="py-12">
-      <div className="card mx-auto bg-base-100 border border-gray-200 w-full shrink-0 shadow-2xl">
+    <div className="py-12 ">
+      <div className="text-center mb-4">
+  {/* Icon / Avatar */}
+  <div className="mx-auto h-20 w-20 bg-gradient-to-br from-primary via-secondary to-accent rounded-3xl flex items-center justify-center mb-8 shadow-2xl shadow-primary/25 dark:shadow-primary/40 backdrop-blur-sm border border-primary/20">
+    <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+    </svg>
+  </div>
+
+  {/* Heading */}
+  <h2 className="text-4xl md:text-5xl font-bold mb-4">
+    <span className="text-base-content dark:text-base-content">Join Us </span>
+    <span className="relative inline-block">
+      <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+        Today
+      </span>
+      <div className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary rounded-full opacity-60"></div>
+    </span>
+  </h2>
+
+  {/* Subtext */}
+  <p className="text-lg text-base-content/80 dark:text-base-content/70 font-medium">
+    Create your account and access all features
+  </p>
+</div>
+
+      <div className="card max-w-xl mx-auto bg-base-100 border border-gray-200 w-full shrink-0 shadow-2xl">
+
+        
         <form onSubmit={handleSubmit(handleCreateUser)} className="card-body">
-          <h1 className="text-3xl text-center font-bold">SignUp now!</h1>
-          <div className="flex flex-col-reverse md:flex-row-reverse">
-            <div className="flex-1 flex flex-col justify-center items-center">
-              <div className="text-center border border-[#2F80ED] rounded-2xl p-4 m-4 bg-[#2F80ED10]">
-                <h1 className="text-[#2F80ED]"> Already have an account?</h1>
-                <h1>
-                  <span className="text-[#2F80ED]">Please</span>
-                  <Link
-                    state={location?.state}
-                    to={"/login"}
-                    className="ml-2 text-2xl font-extrabold text-blue-500 underline"
-                  >
-                    Login
-                  </Link>
-                </h1>
-              </div>
-            </div>
+         
+          <div className="">
+           
             <div className="flex-1">
               <fieldset className="fieldset">
                 <GoogleLogin from={from}></GoogleLogin>
@@ -184,7 +196,7 @@ const Register = () => {
                 <input
                   {...register("name", { required: true })}
                   type="text"
-                  className="input bg-[#2F80ED20] w-full"
+                  className="w-full px-5 py-4 bg-base-100/50 dark:bg-base-200/50 border-2 border-base-300/90 dark:border-base-content/80 rounded-2xl focus:ring-2 focus:ring-primary focus:border-primary/50 transition-all duration-300 text-base-content dark:text-base-content placeholder-base-content/50 dark:placeholder-base-content/40 backdrop-blur-sm hover:bg-base-100 dark:hover:bg-base-200/70 font-medium"
                   placeholder="Enter Your Name"
                 />
 
@@ -192,7 +204,7 @@ const Register = () => {
                 <input
                   {...register("email", { required: true })}
                   type="email"
-                  className="input bg-[#2F80ED20] w-full"
+                  className="w-full px-5 py-4 bg-base-100/50 dark:bg-base-200/50 border-2 border-base-300/90 dark:border-base-content/80 rounded-2xl focus:ring-2 focus:ring-primary focus:border-primary/50 transition-all duration-300 text-base-content dark:text-base-content placeholder-base-content/50 dark:placeholder-base-content/40 backdrop-blur-sm hover:bg-base-100 dark:hover:bg-base-200/70 font-medium"
                   placeholder="Enter Your Email"
                 />
 
@@ -202,17 +214,23 @@ const Register = () => {
                   type="file"
                   accept="image/*"
                   onChange={handleImageUpload}
-                  className="input bg-[#2F80ED20] w-full"
+                  className="w-full px-5 py-4 bg-base-100/50 dark:bg-base-200/50 border-2 border-base-300/90 dark:border-base-content/80 rounded-2xl focus:ring-2 focus:ring-primary focus:border-primary/50 transition-all duration-300 text-base-content dark:text-base-content placeholder-base-content/50 dark:placeholder-base-content/40 backdrop-blur-sm hover:bg-base-100 dark:hover:bg-base-200/70 font-medium"
                 />
 
                 <label className="label">Role (Required)</label>
                 <select
                   {...register("role", { required: true })}
-                  className="input bg-[#2F80ED20] w-full"
+                  className="w-full px-5 py-4 bg-base-100/50 dark:bg-base-200/50 border-2 border-base-300/90 dark:border-base-content/80 rounded-2xl focus:ring-2 focus:ring-primary focus:border-primary/50 transition-all duration-300 text-base-content dark:text-base-content placeholder-base-content/50 dark:placeholder-base-content/40 backdrop-blur-sm hover:bg-base-100 dark:hover:bg-base-200/70 font-medium"
                 >
-                  <option className="dark:text-black" value="">Select Role</option>
-                  <option className="dark:text-black" value="Employee">Employee</option>
-                  <option className="dark:text-black" value="HR">HR</option>
+                  <option className="dark:text-black" value="">
+                    Select Role
+                  </option>
+                  <option className="dark:text-black" value="Employee">
+                    Employee
+                  </option>
+                  <option className="dark:text-black" value="HR">
+                    HR
+                  </option>
                 </select>
                 {errors.role && (
                   <p className="text-error my-3 text-sm">Role is required</p>
@@ -222,7 +240,7 @@ const Register = () => {
                 <input
                   {...register("bank_account_no", { required: true })}
                   type="text"
-                  className="input bg-[#2F80ED20] w-full"
+                  className="w-full px-5 py-4 bg-base-100/50 dark:bg-base-200/50 border-2 border-base-300/90 dark:border-base-content/80 rounded-2xl focus:ring-2 focus:ring-primary focus:border-primary/50 transition-all duration-300 text-base-content dark:text-base-content placeholder-base-content/50 dark:placeholder-base-content/40 backdrop-blur-sm hover:bg-base-100 dark:hover:bg-base-200/70 font-medium"
                   placeholder="Bank Account Number"
                 />
 
@@ -230,7 +248,7 @@ const Register = () => {
                 <input
                   {...register("salary", { required: true })}
                   type="number"
-                  className="input bg-[#2F80ED20] w-full"
+                  className="w-full px-5 py-4 bg-base-100/50 dark:bg-base-200/50 border-2 border-base-300/90 dark:border-base-content/80 rounded-2xl focus:ring-2 focus:ring-primary focus:border-primary/50 transition-all duration-300 text-base-content dark:text-base-content placeholder-base-content/50 dark:placeholder-base-content/40 backdrop-blur-sm hover:bg-base-100 dark:hover:bg-base-200/70 font-medium"
                   placeholder="Salary"
                 />
 
@@ -238,41 +256,98 @@ const Register = () => {
                 <input
                   {...register("designation", { required: true })}
                   type="text"
-                  className="input bg-[#2F80ED20] w-full"
+                  className="w-full px-5 py-4 bg-base-100/50 dark:bg-base-200/50 border-2 border-base-300/90 dark:border-base-content/80 rounded-2xl focus:ring-2 focus:ring-primary focus:border-primary/50 transition-all duration-300 text-base-content dark:text-base-content placeholder-base-content/50 dark:placeholder-base-content/40 backdrop-blur-sm hover:bg-base-100 dark:hover:bg-base-200/70 font-medium"
                   placeholder="Designation"
                 />
 
                 <label className="label">Password</label>
-                <div className="relative bg-[#2F80ED20]">
+                <div className="relative ">
                   <input
                     {...register("password", { required: true })}
                     type={show ? "text" : "password"}
-                    className="input w-full pr-16 bg-[#2F80ED20]"
+                    className="w-full px-5 py-4 bg-base-100/50 dark:bg-base-200/50 border-2 border-base-300/90 dark:border-base-content/80 rounded-2xl focus:ring-2 focus:ring-primary focus:border-primary/50 transition-all duration-300 text-base-content dark:text-base-content placeholder-base-content/50 dark:placeholder-base-content/40 backdrop-blur-sm hover:bg-base-100 dark:hover:bg-base-200/70 font-medium"
                     placeholder="Password"
                   />
                   <button
                     onClick={() => setShow(!show)}
                     type="button"
-                    className="absolute dark:bg-[#313036f8] inset-y-0 right-0 flex items-center px-4 z-10"
+                    className="absolute inset-y-0 right-0 flex items-center pr-4 text-base-content/60 dark:text-base-content/50 hover:text-primary dark:hover:text-primary transition-colors duration-200 z-10"
                   >
                     {show ? (
-                      <MdOutlineRemoveRedEye size={30} />
+                      <MdOutlineRemoveRedEye size={22} />
                     ) : (
-                      <IoMdEyeOff size={30} />
+                      <IoMdEyeOff size={22} />
                     )}
                   </button>
                 </div>
 
-                <p className="text-error my-3 text-sm">{passwordError}</p>
-                <button className="btn border-none bg-[#2F80ED80] mt-4">SignUp</button>
-              </fieldset>
+ </fieldset>
+
+                  {/* Enhanced Error Message */}
+            {error && (
+              <div className="bg-error/10 border-2 border-error/20 text-error px-6 py-4 rounded-2xl text-sm font-medium backdrop-blur-sm flex items-center gap-3">
+                <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z" />
+                </svg>
+                <span>{error}</span>
+              </div>
+            )}
+            {passwordError && (
+              <div className="bg-error/10 border-2 border-error/20 text-error px-6 py-4 rounded-2xl text-sm font-medium backdrop-blur-sm flex items-center gap-3">
+                <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z" />
+                </svg>
+                <span>{passwordError}</span>
+              </div>
+            )}
+               {/* Enhanced Submit Button */}
+            <button 
+              type="submit"
+              className="group mt-4 relative w-full bg-gradient-to-r from-primary via-secondary to-primary hover:from-secondary hover:via-primary hover:to-secondary text-white font-bold py-4 px-6 rounded-2xl transition-all duration-500 transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-primary/30 dark:focus:ring-primary/50 shadow-2xl hover:shadow-3xl shadow-primary/25 dark:shadow-primary/40 overflow-hidden"
+            >
+              {/* Button shine effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+              
+              <span className="relative z-10 flex items-center justify-center gap-3 text-lg">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                </svg>
+                Sign Up 
+              </span>
+              
+              {/* Button glow effect */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500"></div>
+            </button>
+
+             
             </div>
           </div>
-          <div className="text-center">
-            <p className="text-error my-3">{error}</p>
-          </div>
+            {/* Enhanced Register Link */}
+            <div className="text-center pt-6 border-t-2 border-dashed border-base-content/10">
+              <div className="bg-primary/5 dark:bg-primary/10 rounded-2xl p-6 backdrop-blur-sm border border-primary/20">
+                <p className="text-base-content/80 dark:text-base-content/70 mb-3 font-medium">
+                  Already you have an Account?
+                </p>
+                <Link
+                  state={location?.state}
+                  to={"/login"}
+                  className="inline-flex items-center gap-2 font-bold text-primary transition-colors duration-300 text-lg group"
+                >
+                  <span>Please Login</span>
+                  <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
         </form>
       </div>
+       {/* Professional Footer */}
+        <div className="text-center mt-5">
+          <p className="text-sm text-base-content/60 dark:text-base-content/50 font-medium">
+            Secured by enterprise-grade encryption • Terms of Service • Privacy Policy
+          </p>
+        </div>
     </div>
   );
 };

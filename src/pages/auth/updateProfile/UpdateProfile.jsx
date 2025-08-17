@@ -8,10 +8,17 @@ import useUserRole from "../../../hooks/useUserRole";
 import LoadingPage from "../../../components/Loadingpage";
 
 const UpdateProfile = () => {
+  const {  user, loading, updateUserProfile, setLoading } =
+    useAuth();
+  // Show nav layout
+  // useEffect(() => {
+  //   isShowNavAuthLayot(true);
+  //   return () => isShowNavAuthLayot(false);
+  // }, []);
   const axiosinstance = useAxiosInstance();
   const { role, roleLoading } = useUserRole();
   const [uploadedImage, setUploadedImage] = useState("");
-  const { user, loading, updateUserProfile, setLoading } = useAuth();
+
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();

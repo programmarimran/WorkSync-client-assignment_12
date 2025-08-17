@@ -17,6 +17,7 @@ let token = null;
 export const getToken = () => token;
 
 const AuthProvider = ({ children }) => {
+  const [showNavAuthLayout,isShowNavAuthLayot]=useState(false)
   const [footerEmail, setFooterEmail] = useState("");
   const [user, setUser] = useState(null);
   // console.log(user);
@@ -75,6 +76,8 @@ const AuthProvider = ({ children }) => {
     setUser,
     setFooterEmail,
     footerEmail,
+    showNavAuthLayout,
+    isShowNavAuthLayot
   };
   return <AuthContext value={userInfo}>{children}</AuthContext>;
 };
