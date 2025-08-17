@@ -1,4 +1,4 @@
-import React from "react";
+import img from "../../../assets/logo.png"
 import { Link, useParams } from "react-router";
 import { jobs } from "../../../assets/hiringData";
 
@@ -23,9 +23,9 @@ const JobDetails = () => {
       <div className="bg-white rounded-lg shadow-lg p-6 max-w-4xl mx-auto">
         <div className="flex items-center mb-6">
           <img
-            src={jobData.icon}
+            src={img}
             alt={`${jobData.title} Icon`}
-            className="w-16 h-16 mr-4"
+            className="w-24 mr-4"
           />
           <div>
             <h1 className="text-3xl font-bold text-gray-800">
@@ -105,7 +105,7 @@ const JobDetails = () => {
 
         <div className="text-center">
          <Link to={"/dashboard"}>
-          <button className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700">
+          <button className="btn btn-primary">
             Apply Now
           </button>
          </Link>

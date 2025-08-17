@@ -4,7 +4,8 @@ import JobCard from './JobCard';
 
 
 const HiringSection = () => {
-    const jobsData=jobs
+    const jobsDatainitial=jobs
+    const jobsData=jobsDatainitial.slice(0,8)
     return (
          <div className=" p-4 sm:p-8 font-sans">
       <div className="max-w-7xl mx-auto">
