@@ -7,7 +7,7 @@ import TeamSection from "../teamSection/TeamSection";
 import CustomerReviewsSection from "../customerReviewSection/CustomerReviewsSection";
 import FaqSection from "../faqSection/FaqSection";
 import BeLocation from "../beLocation/BeLocation";
-import DemoEmployeeCard from "../services/DemoCardHartcode";
+
 import HiringSection from "../hiringSection/HiringSection";
 
 const SubHome = ({ sectionRef }) => {
@@ -45,9 +45,7 @@ const SubHome = ({ sectionRef }) => {
       <section>
         <HiringSection/>
       </section>
-      <section>
-        <DemoEmployeeCard/>
-      </section>
+    
       <section className="mt-12 mt:my-20 ">
         <TeamSection teamMembers={teamMembers} />
       </section>
